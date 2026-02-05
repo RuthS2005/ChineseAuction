@@ -1,0 +1,36 @@
+<div class="cart-container" style="padding: 20px;">
+  <h2>סל הקניות שלי</h2>
+
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <table class="table" style="width: 100%; text-align: right;">
+      <thead>
+        <tr>
+          <th>מתנה</th>
+          <th>מחיר לכרטיס</th>
+          <th>כמות</th>
+          <th>סה"כ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.giftName }}</td>
+          <td>{{ item.price }} ₪</td>
+          <td>{{ item.quantity || 1 }}</td>
+          <td>{{ (item.price * (item.quantity || 1)) }} ₪</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 20px; font-weight: bold; font-size: 1.2em;">
+      סה"כ לתשלום: {{ totalPrice }} ₪
+    </div>
+
+    <button (click)="onCheckout()" style="background-color: green; color: white; padding: 10px 20px; margin-top: 15px;">
+      בצע תשלום ושלח להגרלה
+    </button>
+  </div>
+
+  <ng-template #emptyCart>
+    <p>הסל שלך ריק... לך לבחור כמה מתנות!</p>
+  </ng-template>
+</div>

@@ -1,0 +1,10 @@
+<h2>רשימת תורמים</h2>
+
+<ul>
+  <li *ngFor="let donor of donors, let i = index">
+    {{ donor.name }}
+
+    <button (click)="onEdit(donor)">עדכון</button>
+    <button (click)="onDelete(donor.id)">מחיקה</button>
+  </li>
+</ul>

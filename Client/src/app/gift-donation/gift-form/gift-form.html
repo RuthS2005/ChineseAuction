@@ -1,0 +1,17 @@
+<h2>הוספת מתנה</h2>
+
+<input [(ngModel)]="gift.name" placeholder="שם המתנה" />
+<input [(ngModel)]="gift.description" placeholder="תיאור המתנה" />
+<input [(ngModel)]="gift.value" placeholder=" מחיר" type="number" />
+<select [(ngModel)]="gift.category">
+  <option value="" disabled selected>בחר קטגוריה</option>
+  <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+</select>
+//תורם
+<select [(ngModel)]="gift.donorId">
+  <option value="" disabled selected>בחר תורם</option>
+  <option *ngFor="let donor of donors" [value]="donor.id">{{ donor.name }}</option>
+</select>
+<input type="file" (change)="onImageSelected($event)" />
+
+<button (click)="onSave()">שמירה</button>

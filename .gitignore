@@ -1,0 +1,12 @@
+# --- Angular ---
+node_modules/
+dist/
+.angular/
+.vscode/
+
+# --- .NET / C# ---
+bin/
+obj/
+.vs/
+*.user
+!appsettings.Example.json

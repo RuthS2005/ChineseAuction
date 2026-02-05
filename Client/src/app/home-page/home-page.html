@@ -1,0 +1,22 @@
+<div class="home-container">
+
+  <div class="title-section">
+    <h1>המכירה הסינית</h1>
+    <p>ברוכים הבאים למערכת המכירה</p>
+  </div>
+
+  <div class="menu-buttons">
+    <button routerLink="/tickets">
+      רכישת כרטיס
+    </button>
+
+    <button routerLink="/donors" *ngIf="authService.isManager()">
+      רשימת התורמים
+    </button>
+
+    <button routerLink="/gifts"*ngIf="authService.isManager()">
+      תרומת מתנה
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="donor-m">
+<h1>ניהול תורמים</h1>
+
+<button (click)="showForm = true">
+  הוספת תורם
+</button>
+<app-donor-form
+  *ngIf="showForm"
+[donor]="tempDonor"
+  (saveDonor)="saveDonor($event)">
+</app-donor-form>
+
+<app-donors-list
+  [donors]="donors"
+  (deleteDonor)="removeDonor($event)"
+  (editDonor)="startEdit($event)">
+</app-donors-list>
+</div>

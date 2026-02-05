@@ -1,0 +1,26 @@
+<div class="gifts-container">
+  
+  <!-- לולאה: רצה רק אם יש מתנות -->
+  <!-- שים לב: ה-ngFor נמצא על ה-div של הכרטיס -->
+  <div class="gift-card" *ngFor="let gift of gifts">
+
+    <img [src]="gift.imageUrl" *ngIf="gift.imageUrl" alt="תמונת מתנה" style="max-width: 100px;">
+      <h3>{{ gift.name }}</h3>
+      <p>{{ gift.id }}</p>
+   <!-- <p>כרטיסים שנמכרו: {{ gift.ticketsSold }}</p> -->
+
+              <input type="number" min="1" placeholder="כמות הכרטיסים" #qtyInput>
+
+                      <!-- בלחיצה, אנחנו שולחים את המתנה ואת הערך מה-input -->
+        <button (click)="buyTickets(gift, qtyInput)">
+          רכוש כרטיסים
+        </button>
+
+  </div>
+
+</div>
+
+<!-- הודעה ריקה: נמצאת מחוץ ללולאה לחלוטין! -->
+<div *ngIf="gifts.length === 0" style="padding: 20px; text-align: center;">
+  <h3>...לא נטענו מתנות</h3>
+</div>

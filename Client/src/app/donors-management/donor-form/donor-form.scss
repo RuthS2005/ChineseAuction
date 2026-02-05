@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  background: white;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+}
+
+h2 {
+  margin-bottom: 12px;
+  color: #34495e;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+}
+
+button {
+  width: 100%;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background: #27ae60;
+  }
+}

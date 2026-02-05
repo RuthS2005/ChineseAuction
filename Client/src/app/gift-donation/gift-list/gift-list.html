@@ -1,0 +1,19 @@
+<div class="gallery">
+  <div class="gift" *ngFor="let gift of gifts">
+    <img [src]="gift.imageUrl || 'assets/placeholder.jpg'" />
+    <div class="overlay">
+      <h3>{{ gift.name }}</h3>
+      <p>מחיר: {{ gift.cost }} </p>
+
+      <div class="actions" *ngIf="auth.isManager()">
+        <button (click)="onEdit(gift)">✏️</button>
+        <button (click)="onDelete(gift.id)">🗑️</button>
+        <button (click)="onRaffle(gift.id)">🎲</button>
+      </div>
+
+      <div *ngIf="!auth.isManager()">
+         </div>
+
+    </div>
+  </div>
+</div>

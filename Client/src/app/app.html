@@ -1,0 +1,26 @@
+<nav style="display: flex; gap: 15px; padding: 10px; background: #f0f0f0; align-items: center;">
+    
+    <button routerLink="/tickets">🎟️ רכישת כרטיסים</button>
+
+    <ng-container *ngIf="auth.isManager()">
+        <div style="border-right: 2px solid #ccc; padding-right: 10px; display: flex; gap: 10px;">
+            <strong>אזור ניהול:</strong>
+            <button routerLink="/donors">👥 ניהול תורמים</button>
+            <button routerLink="/gifts">🎁 ניהול מתנות</button>
+            <button routerLink="/reports">📊 דוחות</button> 
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="auth.isLoggedIn()">
+        <button routerLink="/tickets">🛒 סל קניות</button>
+        
+        <button (click)="logout()" style="background-color: #ffcccc;">🚪 יציאה</button>
+    </ng-container>
+
+    <button routerLink="/" *ngIf="!auth.isLoggedIn()" style="background-color: #ccffcc;">
+        🔑 התחברות / הרשמה
+    </button>
+
+</nav>
+
+<router-outlet></router-outlet>
