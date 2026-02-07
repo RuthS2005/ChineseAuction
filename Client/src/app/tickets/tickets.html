@@ -1,17 +1,15 @@
-<div class="tickets-layout" style="display: flex; gap: 20px;">
-  
+<div class="tickets-container" style="display: flex;">
+
   <!-- צד ימין: החנות -->
-  <div class="shop-side" style="flex: 2;">
-    <!-- 
-       (itemAddedToCart): תופסים את הצעקה של החנות
-       myCart.loadCart(): מפעילים את הפונקציה של העגלה (שיש לה את השם myCart)
-    -->
+  <div style="flex: 2;">
+    <!-- (itemAddedToCart): כשזה קורה... -->
+    <!-- myCart.loadCart(): תפעיל את הפונקציה בעגלה -->
     <app-gift-list (itemAddedToCart)="myCart.loadCart()"></app-gift-list>
   </div>
 
   <!-- צד שמאל: העגלה -->
-  <div class="cart-side" style="flex: 1;">
-    <!-- נותנים לעגלה שם מזהה (משתנה) שנקרא #myCart -->
+  <div style="flex: 1;">
+    <!-- נותנים לעגלה שם מזהה #myCart -->
     <app-cart #myCart></app-cart>
   </div>
 

@@ -19,22 +19,25 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  loadCart() {
-    const userId = this.auth.getCurrentUser()?.id;
-    if (userId) {
-      this.giftsService.getCart(userId).subscribe(items => {
-        this.cartItems = items;
-        this.calculateTotal();
-      });
-    }
+loadCart() {
+  const userId = this.auth.getCurrentUser();
+  console.log("🔄 טוען עגלה עבור משתמש:", userId); // <--- הוסף את זה!
+
+  if (userId > 0) {
+    this.giftsService.getCart(userId).subscribe(items => {
+      console.log("📦 מוצרים שהגיעו מהשרת:", items); // <--- הוסף את זה!
+      this.cartItems = items;
+      this.calculateTotal(); // אם יש לך פונקציית חישוב סכום
+    });
   }
+}
 
   calculateTotal() {
     this.totalPrice = this.cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
   }
 
   onCheckout() {
-    const userId = this.auth.getCurrentUser()?.id;
+    const userId = this.auth.getCurrentUser();
     this.giftsService.checkout(userId).subscribe(() => {
       alert('התשלום בוצע בהצלחה.');
       this.cartItems = [];

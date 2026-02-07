@@ -39,14 +39,30 @@ public class PurchasesController : ControllerBase
     }
 
     // שימי לב: מחקתי את הפרמטר userId מהחתימה!
-    [HttpGet("my-cart")]
-    public IActionResult GetMyCart()
+    //[HttpGet("my-cart")]
+    //public IActionResult GetMyCart()
+    //{
+    //    int userId = GetCurrentUserId();
+    //    var cart = _purchaseService.GetUserCart(userId);
+    //    return Ok(cart);
+    //}
+    // GET: api/Purchases/Cart/5
+    [HttpGet("Cart/{userId}")]
+    public IActionResult GetCart(int userId)
     {
-        int userId = GetCurrentUserId();
-        var cart = _purchaseService.GetUserCart(userId);
-        return Ok(cart);
-    }
+        try
+        {
+            // קריאה לסרוויס שיביא את הפריטים
+            var cartItems = _purchaseService.GetUserCart(userId);
 
+            // החזרת הנתונים (אפילו אם הסל ריק, זה יחזיר רשימה ריקה [])
+            return Ok(cartItems);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Error = ex.Message });
+        }
+    }
     [HttpPost("checkout")]
     public IActionResult Checkout()
     {
