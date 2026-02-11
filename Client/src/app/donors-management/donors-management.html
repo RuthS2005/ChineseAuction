@@ -10,6 +10,14 @@
   (saveDonor)="saveDonor($event)">
 </app-donor-form>
 
+<div class="search-box" style="margin-bottom: 20px;">
+  <input type="text" 
+         placeholder="חפש תורם לפי שם או מייל..." 
+         [(ngModel)]="searchTerm"
+         (input)="onSearch()" 
+         style="padding: 10px; width: 300px;">
+</div>
+
 <app-donors-list
   [donors]="donors"
   (deleteDonor)="removeDonor($event)"

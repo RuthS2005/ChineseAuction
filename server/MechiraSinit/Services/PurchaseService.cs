@@ -43,25 +43,32 @@ namespace MechiraSinit.Services
             _context.SaveChanges();
         }
 
-        public void Checkout(int userId)
+        public bool Checkout(int userId)
         {
-            // שולפים את כל מה שבסל ולא שולם
+            // 1. שליפת כל הפריטים של המשתמש שעדיין לא טופלו (נניח שסטטוס false אומר "בעגלה")
+            // הערה: תוודאי שבטבלה שלך יש עמודה כמו Status, IsPaid, או Completed
+            // אם אין, תצטרכי להוסיף או להשתמש בלוגיקה אחרת. כאן אני מניח ש-Status ברירת מחדל הוא false.
             var cartItems = _context.Purchases
-                .Where(p => p.UserId == userId && !p.IsPaid)
-                .ToList();
+                                    .Where(p => p.UserId == userId && p.IsPaid==false)
+                                    .ToList();
 
             if (cartItems.Count == 0)
-                throw new Exception("הסל ריק");
+            {
+                return false; // אין מה לקנות
+            }
 
-            // מעדכנים סטטוס
+            // 2. עדכון הסטטוס ל-"שולם" (true)
             foreach (var item in cartItems)
             {
                 item.IsPaid = true;
+                // אופציונלי: עדכון תאריך הרכישה לרגע זה
+                // item.PurchaseDate = DateTime.Now; 
             }
 
+            // 3. שמירה במסד הנתונים
             _context.SaveChanges();
+            return true;
         }
-
         public List<object> GetUserCart(int userId)
         {
             var items = _context.Purchases

@@ -106,11 +106,21 @@ export class GiftsService {
   // A. ניהול מתנות
   // =====================
 
-  getGifts(): Observable<Gift[]> {
-    return this.http.get<Gift[]>(this.url('Gift'))
-      .pipe(catchError(this.handleError('getGifts')));
+// עדכון החתימה: מקבלים פרמטרים אופציונליים (סימן שאלה)
+getGifts(search?: string, sort?: string): Observable<Gift[]> {
+  
+  // בניית הכתובת עם הפרמטרים
+  let url = `${this.apiUrl}/Gift`; // או /Gift תלוי בראוטר שלך
+
+  if (search) {
+    url += `search=${search}&`;
+  }
+  if (sort) {
+    url += `sort=${sort}&`;
   }
 
+  return this.http.get<Gift[]>(url);
+}
   // שים לב: אנחנו לא עושים push למערך, אלא שולחים לשרת
   // Use CreateGiftDto for request and expect created Gift (with id) back from server
   addGift(gift: CreateGiftDto): Observable<Gift> {
@@ -148,10 +158,10 @@ export class GiftsService {
   // B. ניהול תורמים
   // =====================
 
-  getDonors(): Observable<Donor[]> {
-    return this.http.get<Donor[]>(this.url('Donors'))
-      .pipe(catchError(this.handleError('getDonors')));
-  }
+getDonors(searchQuery: string = ''): Observable<Donor[]> {
+  // שולחים את הפרמטר לשרת
+  return this.http.get<Donor[]>(`${this.apiUrl}/Donors?search=${searchQuery}`);
+}
 
   addDonor(donor: CreateDonorDto): Observable<Donor> {
     if (!donor || !donor.name || !donor.email) {

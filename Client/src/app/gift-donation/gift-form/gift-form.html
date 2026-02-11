@@ -1,17 +1,53 @@
-<h2>הוספת מתנה</h2>
+<div class="gift-form-container">
+  
+  <h2>הוספת מתנה חדשה</h2>
 
-<input [(ngModel)]="gift.name" placeholder="שם המתנה" />
-<input [(ngModel)]="gift.description" placeholder="תיאור המתנה" />
-<input [(ngModel)]="gift.value" placeholder=" מחיר" type="number" />
-<select [(ngModel)]="gift.category">
-  <option value="" disabled selected>בחר קטגוריה</option>
-  <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-</select>
-//תורם
-<select [(ngModel)]="gift.donorId">
-  <option value="" disabled selected>בחר תורם</option>
-  <option *ngFor="let donor of donors" [value]="donor.id">{{ donor.name }}</option>
-</select>
-<input type="file" (change)="onImageSelected($event)" />
+  <form (ngSubmit)="onSave()">
+    
+    <div class="form-group">
+      <label>שם המתנה:</label>
+      <input type="text" name="name" [(ngModel)]="gift.name" required placeholder="שם המתנה">
+    </div>
 
-<button (click)="onSave()">שמירה</button>
+    <div class="form-group">
+      <label>תיאור:</label>
+      <textarea name="description" [(ngModel)]="gift.description" placeholder="תיאור קצר של המתנה"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>קטגוריה:</label>
+      <select name="category" [(ngModel)]="gift.category" required>
+        <option value="" disabled selected>בחר קטגוריה...</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>תורם:</label>
+      <select name="donorId" [(ngModel)]="gift.donorId" required>
+        <option [ngValue]="null" disabled selected>בחר תורם...</option>
+        <option *ngFor="let d of donors" [ngValue]="d.id">{{ d.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>מחיר כרטיס:</label>
+      <input type="number" name="value" [(ngModel)]="gift.value" required placeholder="מחיר">
+    </div>
+
+    <div class="form-group">
+      <label>תמונה:</label>
+      <input type="file" (change)="onImageSelected($event)" accept="image/*">
+      
+      <div *ngIf="gift.imageUrl" class="preview" style="margin-top: 10px;">
+         <p>תצוגה מקדימה:</p>
+         <img [src]="gift.imageUrl" alt="Preview" width="150" style="border: 1px solid #ccc; padding: 3px;">
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!gift.name || !gift.category || !gift.value || !gift.donorId">
+      שמור מתנה
+    </button>
+  </form>
+
+</div>

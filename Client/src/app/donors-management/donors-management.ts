@@ -2,34 +2,45 @@ import { Component } from '@angular/core';
 import { DonorForm } from './donor-form/donor-form';
 import { DonorsList } from './donors-list/donors-list';
 import { CommonModule } from '@angular/common';
-import { GiftsService } from '../services/gifts'; // וודא שהנתיב נכון
+import { GiftsService } from '../services/gifts'; 
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-donors-management',
   standalone: true,
-  imports: [DonorForm, DonorsList, CommonModule],
+  imports: [CommonModule, FormsModule, DonorForm, DonorsList],
   templateUrl: './donors-management.html',
   styleUrls: ['./donors-management.scss'],
 })
 export class DonorsManagement {
   showForm = false;
   donors: any[] = [];
-  
+  searchTerm: string = ''; // המשתנה שיתחבר לתיבת החיפוש
   selectedDonor: any = null; // שומר את המקור (כדי לדעת אם זה עדכון)
   tempDonor: any = {};       // המשתנה שנשלח לטופס (מונע את הבאג של האיפוס)
 
   constructor(private giftService: GiftsService) {
-    // שליפה מהשרת
-    this.giftService.getDonors().subscribe(data => {
+    this.loadDonors(); // טוען את התורמים כשהקומפוננט נטען
+  }
+
+
+  // פונקציה ראשית לטעינה (עם או בלי חיפוש)
+  loadDonors() {
+    this.giftService.getDonors(this.searchTerm).subscribe(data => {
       this.donors = data;
     });
+  }
+
+  // פונקציה שתופעל כשהמשתמש מקליד
+  onSearch() {
+    this.loadDonors();
   }
 
   // --- פתיחת טופס להוספה חדשה ---
   addNewDonor() {
     this.selectedDonor = null;
     // מאתחלים אובייקט ריק לטופס
-    this.tempDonor = { name: '', phone: '', email: '' }; 
+    this.tempDonor = { name: '', phone: '', email: '' };
     this.showForm = true;
   }
 
@@ -37,7 +48,7 @@ export class DonorsManagement {
   startEdit(donor: any) {
     this.selectedDonor = donor; // שומרים רפרנס למקורי
     // מעתיקים את הנתונים לתוך המשתנה הזמני
-    this.tempDonor = { ...donor }; 
+    this.tempDonor = { ...donor };
     this.showForm = true;
   }
 
@@ -48,7 +59,7 @@ export class DonorsManagement {
     if (this.selectedDonor) {
       // ============ לוגיקת עדכון ============
       const originalId = this.selectedDonor.id;
-      
+
       // מכינים אובייקט לעדכון עם ה-ID המקורי
       const donorToUpdate = { ...donorFromForm, id: originalId };
 
@@ -60,8 +71,8 @@ export class DonorsManagement {
           if (index !== -1) {
             // עדכון הרשימה בתצוגה
             this.donors[index] = donorToUpdate;
-            // טריק לרענון הטבלה באנגולר (יצירת רפרנס חדש למערך)
-            this.donors = [...this.donors]; 
+            // רענון הטבלה באנגולר (יצירת רפרנס חדש למערך)
+            this.donors = [...this.donors];
             console.log("עודכן בהצלחה ברשימה!");
           }
 
@@ -97,9 +108,9 @@ export class DonorsManagement {
           this.donors = this.donors.filter(d => d.id !== id);
         },
         error: (err) => {
-           // הצגת השגיאה מהשרת (למשל: לא ניתן למחוק כי יש מתנות)
-           const msg = err.error?.Message || err.message || "שגיאה במחיקה";
-           alert(msg);
+          // הצגת השגיאה מהשרת (למשל: לא ניתן למחוק כי יש מתנות)
+          const msg = err.error?.Message || err.message || "שגיאה במחיקה";
+          alert(msg);
         }
       });
     }

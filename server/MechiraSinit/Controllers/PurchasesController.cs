@@ -63,11 +63,19 @@ public class PurchasesController : ControllerBase
             return BadRequest(new { Error = ex.Message });
         }
     }
-    [HttpPost("checkout")]
-    public IActionResult Checkout()
+    [HttpPost("Checkout/{userId}")]
+    public IActionResult Checkout(int userId)
     {
-        int userId = GetCurrentUserId(); // המזהה נלקח מהטוקן בלבד
-        _purchaseService.Checkout(userId);
-        return Ok(new { message = "שולם בהצלחה" });
+        // קוראים לסרוויס שיבצע את העדכון במסד הנתונים
+        bool success = _purchaseService.Checkout(userId);
+
+        if (!success)
+        {
+            return BadRequest("העגלה ריקה או שלא ניתן היה לבצע את התשלום");
+        }
+
+        return Ok(new { Message = "התשלום בוצע בהצלחה והסל התרוקן" });
     }
+
+
 }

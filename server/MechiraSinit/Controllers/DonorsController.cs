@@ -18,10 +18,11 @@ namespace MechiraSinit.Controllers
         {
             _donorService = donorService;
         }
+        
         [HttpGet]
-        public IActionResult GetAllDonors()
+        public IActionResult GetAll([FromQuery] string? search) // לוקח מה-URL
         {
-            var donors = _donorService.GetAllDonors();
+            var donors = _donorService.GetAllDonors(search);
             return Ok(donors);
         }
         [HttpPost]

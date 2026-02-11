@@ -16,7 +16,7 @@ export class App {
 
   logout() {
     this.auth.logout();
-    this.router.navigate(['/login']); // 3. העברה לדף הלוגין
+    this.router.navigate(['/']); // 3. העברה לדף הלוגין
 
   }
 }

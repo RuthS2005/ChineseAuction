@@ -14,9 +14,23 @@ namespace MechiraSinit.Services
             _context = context;
         }
 
-        public List<DonorDto> GetAllDonors()
+        public List<DonorDto> GetAllDonors(string? search)
         {
-            return _context.Donors.Select(d => new DonorDto
+            // מתחילים בשאילתה (עדיין לא רצים ל-DB)
+            var query = _context.Donors.AsQueryable();
+
+            // אם נשלח ערך לחיפוש - מסננים
+            if (!string.IsNullOrEmpty(search))
+            {
+                // חיפוש לפי שם, מייל, או שם של מתנה שהם תרמו
+                query = query.Where(d =>
+                    d.Name.Contains(search) ||
+                    d.Email.Contains(search) ||
+                    d.Gifts.Any(g => g.Name.Contains(search)) // חיפוש לפי מתנה!
+                );
+            }
+
+            return query.Select(d => new DonorDto
             {
                 Id = d.Id,
                 Name = d.Name,
@@ -24,7 +38,6 @@ namespace MechiraSinit.Services
                 Phone = d.Phone
             }).ToList();
         }
-
         public DonorDto GetDonorById(int id)
         {
             var donor = _context.Donors.Find(id);

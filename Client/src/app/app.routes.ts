@@ -10,7 +10,7 @@ import { CartComponent } from './tickets/cart/cart';
 
 export const routes: Routes = [
       { path: 'home', component: HomePage},
-        { path: 'login', component: LoginComponent }, // <--- הנתיב החדש!
+        { path: '', component: LoginComponent }, // <--- הנתיב החדש!
 
       { path: 'donors', component: DonorsManagement },
       {

@@ -36,12 +36,31 @@ loadCart() {
     this.totalPrice = this.cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
   }
 
-  onCheckout() {
-    const userId = this.auth.getCurrentUser();
-    this.giftsService.checkout(userId).subscribe(() => {
-      alert('התשלום בוצע בהצלחה.');
-      this.cartItems = [];
-      this.totalPrice = 0;
+onCheckout() {
+    // 1. שימוש בפונקציה שמחזירה מספר (ולא אובייקט)
+    const userId = this.auth.getCurrentUser(); 
+    
+    console.log("🚀 מנסה לבצע תשלום עבור משתמש מספר:", userId);
+
+    if (!userId || userId <= 0) {
+        alert("עליך להתחבר מחדש כדי לבצע תשלום");
+        return;
+    }
+
+    // 2. שליחה לשרת
+    this.giftsService.checkout(userId).subscribe({
+      next: (res) => {
+        console.log("✅ תשלום עבר בהצלחה:", res);
+        alert('התשלום בוצע וההזמנה נרשמה!');
+        
+        // ניקוי העגלה בצד לקוח
+        this.cartItems = [];
+        this.totalPrice = 0;
+      },
+      error: (err) => {
+        console.error("❌ שגיאה בתשלום:", err);
+        alert("אירעה שגיאה בביצוע התשלום. נסה שוב.");
+      }
     });
   }
 }

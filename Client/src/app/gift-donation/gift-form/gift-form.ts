@@ -49,6 +49,7 @@ export class GiftForm implements OnInit {
     reader.readAsDataURL(file);
   }
 
+
   onSave() {
     // 5. סידור קטן לפני השליחה כדי שיתאים לשרת (Cost במקום Value)
     const giftDto = {

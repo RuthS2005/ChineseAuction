@@ -29,23 +29,59 @@ namespace MechiraSinit.Services
             _context.SaveChanges();
             return newGift.Id;
         }
-
-        public List<GiftDto> GetAllGifts()
+        // הוספנו פרמטרים: טקסט לחיפוש, וסוג מיון
+        public List<GiftDto> GetAllGifts(string? search, string? sort)
         {
-            return _context.Gifts
-                .Select(g => new GiftDto
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Description = g.Description,
-                    Category = g.Category,
-                    ImageUrl = g.Image,
-                    Cost = g.Cost,
-                    DonorId = g.DonorId
-                })
-                .ToList();
-        }
+            var query = _context.Gifts
+                .Include(g => g.Donor) // חייב את התורם בשביל החיפוש
+                .AsQueryable();
 
+            // --- 1. חיפוש (Filtering) ---
+            if (!string.IsNullOrEmpty(search))
+            {
+                // אם החיפוש הוא מספר - נחפש לפי כמות כרטיסים שנמכרו
+                if (int.TryParse(search, out int soldCount))
+                {
+                    query = query.Where(g => g.TicketsSold >= soldCount);
+                }
+                else
+                {
+                    // אחרת - נחפש לפי שם מתנה או שם תורם
+                    query = query.Where(g =>
+                        g.Name.Contains(search) ||
+                        (g.Donor != null && g.Donor.Name.Contains(search))
+                    );
+                }
+            }
+
+            // --- 2. מיון (Sorting) ---
+            switch (sort)
+            {
+                case "expensive": // הכי יקר
+                    query = query.OrderByDescending(g => g.Cost);
+                    break;
+                case "popular": // הכי נרכש
+                    query = query.OrderByDescending(g => g.TicketsSold);
+                    break;
+                default: // ברירת מחדל (למשל לפי ID או שם)
+                    query = query.OrderBy(g => g.Id);
+                    break;
+            }
+
+            // --- 3. המרה ל-DTO והחזרה ---
+            return query.Select(g => new GiftDto
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Category = g.Category,
+                ImageUrl = g.Image, // או g.Image (תלוי במודל שלך)
+                Cost = g.Cost,
+                DonorId = g.DonorId,
+                // אופציונלי: להחזיר גם את שם התורם וכמות המכירות לשימוש בטבלה
+                // TicketsSold = g.TicketsSold 
+            }).ToList();
+        }
         public bool UpdateGift(int id, GiftDto giftDto)
         {
             var gift = _context.Gifts.Find(id);
@@ -106,5 +142,6 @@ namespace MechiraSinit.Services
 
             return winningPurchase.User; // מחזירים את המשתמש המאושר
         }
+
     }
 }

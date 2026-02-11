@@ -1,5 +1,21 @@
 <div class="gifts-container">
+  <div class="filters-bar" style="display: flex; gap: 15px; margin-bottom: 20px; padding: 10px; background: #f9f9f9; border-radius: 8px;">
   
+  <!-- חיפוש -->
+<input type="text" 
+       placeholder="🔍 חפש מתנה..." 
+       [(ngModel)]="searchTerm" 
+       (input)="applyFilter()" 
+       class="search-input">
+
+<select (change)="onSortChange($event)" class="sort-select">
+    <option value="">מיון רגיל</option>
+    <option value="expensive">הכי יקר</option>
+    <option value="cheap">הכי זול</option>
+    <option value="popular">הכי נמכר</option>
+</select>
+
+</div>
   <!-- לולאה: רצה רק אם יש מתנות -->
   <!-- שים לב: ה-ngFor נמצא על ה-div של הכרטיס -->
   <div class="gift-card" *ngFor="let gift of gifts">

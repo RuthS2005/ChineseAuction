@@ -20,15 +20,15 @@ namespace MechiraSinit.Controllers
             _giftService = giftService;
         }
 
-        [HttpGet]
-        public IActionResult GetAllGifts()
-        {
-            // פניה לסרוויס כדי להביא נתונים מה-SQL
-            var gifts = _giftService.GetAllGifts();
-            return Ok(gifts);
-        }
-
-        [HttpPost]
+  
+            [HttpGet]
+            // מקבלים פרמטרים מה-URL (למשל: api/Gift?search=מכונה&sort=expensive)
+            public IActionResult GetAllGifts([FromQuery] string? search, [FromQuery] string? sort)
+            {
+                var gifts = _giftService.GetAllGifts(search, sort);
+                return Ok(gifts);
+            }
+            [HttpPost]
         [Authorize(Roles = "Manager")]
         public IActionResult CreateGift([FromBody] GiftDto giftDto)
         {
