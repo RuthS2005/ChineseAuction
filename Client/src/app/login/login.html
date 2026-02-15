@@ -1,22 +1,27 @@
 <div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
-  
+
   <h2 style="text-align: center;">{{ isLoginMode ? 'כניסה למערכת' : 'הרשמה חדשה' }}</h2>
 
   <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 10px;">
-    
+
     <!-- שדות שמופיעים רק בהרשמה -->
     <div *ngIf="!isLoginMode">
-      <input type="text" placeholder="שם פרטי" [(ngModel)]="userData.firstName" name="first" required style="width: 100%; padding: 8px;">
+      <input type="text" placeholder="שם פרטי" [(ngModel)]="userData.firstName" name="first" required
+        style="width: 100%; padding: 8px;">
       <br><br>
-      <input type="text" placeholder="שם משפחה" [(ngModel)]="userData.lastName" name="last" required style="width: 100%; padding: 8px;">
+      <input type="text" placeholder="שם משפחה" [(ngModel)]="userData.lastName" name="last" required
+        style="width: 100%; padding: 8px;">
       <br><br>
-      <input type="text" placeholder="טלפון" [(ngModel)]="userData.phone" name="phone" required style="width: 100%; padding: 8px;">
+      <input type="text" placeholder="טלפון" [(ngModel)]="userData.phone" name="phone" required
+        style="width: 100%; padding: 8px;">
       <br><br>
     </div>
 
     <!-- שדות שמופיעים תמיד -->
-    <input type="email" placeholder="אימייל" [(ngModel)]="userData.email" name="email" required style="width: 100%; padding: 8px;">
-    <input type="password" placeholder="סיסמה" [(ngModel)]="userData.password" name="pass" required style="width: 100%; padding: 8px;">
+    <input type="email" placeholder="אימייל" [(ngModel)]="userData.email" name="email" required
+      style="width: 100%; padding: 8px;">
+    <input type="password" placeholder="סיסמה" [(ngModel)]="userData.password" name="pass" required
+      style="width: 100%; padding: 8px;">
 
     <button type="submit" style="background-color: #007bff; color: white; padding: 10px; cursor: pointer;">
       {{ isLoginMode ? 'התחבר' : 'הירשם' }}

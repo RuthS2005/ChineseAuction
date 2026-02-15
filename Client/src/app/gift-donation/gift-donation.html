@@ -3,16 +3,10 @@
 
   <button (click)="showForm = true">הוספת מתנה</button>
 
-  <app-gift-form
-    *ngIf="showForm"
-    [gift]="selectedGift || { name: '', value: 0 }"
-    (saveGift)="saveGift($event)">
+  <app-gift-form *ngIf="showForm" [gift]="selectedGift || { name: '', value: 0 }" (saveGift)="saveGift($event)">
   </app-gift-form>
 
-  <app-gifts-list
-    [gifts]="gifts"
-    (deleteGift)="removeGift($event)"
-    (editGift)="startEdit($event)"
+  <app-gifts-list [gifts]="gifts" (deleteGift)="removeGift($event)" (editGift)="startEdit($event)"
     (raffle)="raffle($any($event))">
   </app-gifts-list>
 

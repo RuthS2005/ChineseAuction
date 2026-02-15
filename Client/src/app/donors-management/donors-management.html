@@ -1,26 +1,17 @@
 <div class="donor-m">
-<h1>ניהול תורמים</h1>
+  <h1>ניהול תורמים</h1>
 
-<button (click)="showForm = true">
-  הוספת תורם
-</button>
-<app-donor-form
-  *ngIf="showForm"
-[donor]="tempDonor"
-  (saveDonor)="saveDonor($event)">
-</app-donor-form>
+  <button (click)="showForm = true">
+    הוספת תורם
+  </button>
+  <app-donor-form *ngIf="showForm" [donor]="tempDonor" (saveDonor)="saveDonor($event)">
+  </app-donor-form>
 
-<div class="search-box" style="margin-bottom: 20px;">
-  <input type="text" 
-         placeholder="חפש תורם לפי שם או מייל..." 
-         [(ngModel)]="searchTerm"
-         (input)="onSearch()" 
-         style="padding: 10px; width: 300px;">
-</div>
+  <div class="search-box" style="margin-bottom: 20px;">
+    <input type="text" placeholder="חפש תורם לפי שם או מייל..." [(ngModel)]="searchTerm" (input)="onSearch()"
+      style="padding: 10px; width: 300px;">
+  </div>
 
-<app-donors-list
-  [donors]="donors"
-  (deleteDonor)="removeDonor($event)"
-  (editDonor)="startEdit($event)">
-</app-donors-list>
+  <app-donors-list [donors]="donors" (deleteDonor)="removeDonor($event)" (editDonor)="startEdit($event)">
+  </app-donors-list>
 </div>

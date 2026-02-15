@@ -7,10 +7,11 @@ import { GiftDonation } from './gift-donation/gift-donation';
 import { Tickets } from './tickets/tickets';
 import { LoginComponent } from './login/login';
 import { CartComponent } from './tickets/cart/cart';
+import { ReportsComponent } from './reports/reports';
 
 export const routes: Routes = [
       { path: 'home', component: HomePage},
-        { path: '', component: LoginComponent }, // <--- הנתיב החדש!
+        { path: '', component: LoginComponent },  
 
       { path: 'donors', component: DonorsManagement },
       {
@@ -23,7 +24,7 @@ export const routes: Routes = [
 },
 {path:'gifts',component:GiftDonation},
 {path:'tickets', component:Tickets},
-{path:'cart', component:CartComponent}
-
+{path:'cart', component:CartComponent},
+{path:'reports', component: ReportsComponent }
 
 ];

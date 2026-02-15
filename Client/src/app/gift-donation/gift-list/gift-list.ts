@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../../services/auth'; // הזרקת הסרוויס
+import { Auth } from '../../services/auth'; 
 
 @Component({
   selector: 'app-gifts-list',
@@ -15,7 +15,6 @@ export class GiftsList {
   @Output() editGift = new EventEmitter<any>();
   @Output() raffle = new EventEmitter<number>();
 
-  // חובה להזריק את ה-Auth כדי להשתמש בו ב-HTML
   constructor(public auth: Auth) {} 
 
   onEdit(gift: any) { this.editGift.emit(gift); }

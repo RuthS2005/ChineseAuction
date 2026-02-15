@@ -1,9 +1,9 @@
 <div class="gift-form-container">
-  
+
   <h2>הוספת מתנה חדשה</h2>
 
   <form (ngSubmit)="onSave()">
-    
+
     <div class="form-group">
       <label>שם המתנה:</label>
       <input type="text" name="name" [(ngModel)]="gift.name" required placeholder="שם המתנה">
@@ -38,10 +38,10 @@
     <div class="form-group">
       <label>תמונה:</label>
       <input type="file" (change)="onImageSelected($event)" accept="image/*">
-      
+
       <div *ngIf="gift.imageUrl" class="preview" style="margin-top: 10px;">
-         <p>תצוגה מקדימה:</p>
-         <img [src]="gift.imageUrl" alt="Preview" width="150" style="border: 1px solid #ccc; padding: 3px;">
+        <p>תצוגה מקדימה:</p>
+        <img [src]="gift.imageUrl" alt="Preview" width="150" style="border: 1px solid #ccc; padding: 3px;">
       </div>
     </div>
 

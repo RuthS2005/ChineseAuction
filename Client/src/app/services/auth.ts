@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { Router } from '@angular/router'; // 1. הוספת הייבוא הזה
+import { Router } from '@angular/router';  
 
 @Injectable({
   providedIn: 'root',
@@ -31,10 +31,7 @@ getCurrentUser(): number {
   if (userStr) {
     const user = JSON.parse(userStr);
     
-    // בדיקה בקונסול - כדי שתראה בעיניים מה שמור שם
-    console.log("🔍 פרטי משתמש בזיכרון:", user);
 
-    // התיקון: בודקים גם אות קטנה וגם אות גדולה
     const id = user.id || user.Id || 0; 
     
     return Number(id); // מוודאים שזה מספר
@@ -52,7 +49,6 @@ isManager(): boolean {
     const user = JSON.parse(userStr);
     console.log("בדיקת מנהל:", user.role); // לראות בעיניים
     
-    // בודקים גם מחרוזת וגם את המספר 1 (הנחה ש-1 זה מנהל אצלך)
     return user.role === 'Manager' || user.role === 1 || user.Role === 'Manager';
   }
   return false;

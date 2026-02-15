@@ -10,27 +10,23 @@ import { GiftsService } from '../../services/gifts'
   styleUrls: ['./gift-form.scss'],
 })
 export class GiftForm implements OnInit {
-  
-  // הרחבנו את אובייקט ברירת המחדל כדי שלא יהיו שגיאות ב-HTML
-  @Input() gift: any = { 
-    name: '', 
-    description: '', 
-    value: 0, 
-    category: '', 
-    donorId: null, 
-    imageUrl: '' 
+
+  @Input() gift: any = {
+    name: '',
+    description: '',
+    value: 0,
+    category: '',
+    donorId: null,
+    imageUrl: ''
   };
-  
+
   @Output() saveGift = new EventEmitter<any>();
 
-  // 2. הנה המערכים שהיו חסרים לך ב-HTML
-  donors: any[] = []; 
+  donors: any[] = [];
   categories: string[] = ['מוצרי חשמל', 'כלי בית', 'ריהוט', 'ספרים', 'נופש'];
 
-  // 3. מזריקים את הסרוויס
-  constructor(private giftsService: GiftsService) {}
+  constructor(private giftsService: GiftsService) { }
 
-  // 4. טוענים את התורמים מיד כשהטופס עולה
   ngOnInit() {
     this.giftsService.getDonors().subscribe(data => {
       this.donors = data;
@@ -51,7 +47,6 @@ export class GiftForm implements OnInit {
 
 
   onSave() {
-    // 5. סידור קטן לפני השליחה כדי שיתאים לשרת (Cost במקום Value)
     const giftDto = {
       name: this.gift.name,
       description: this.gift.description,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Auth } from '../services/auth'; // וודא נתיב
+import { Auth } from '../services/auth';  
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss'] // אם יצרת קובץ css/scss
+  styleUrls: ['./login.scss'] 
 })
 export class LoginComponent {
   

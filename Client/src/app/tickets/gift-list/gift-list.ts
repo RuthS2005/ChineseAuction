@@ -1,19 +1,11 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
-import { GiftsService } from '../../services/gifts'; // וודאי שהנתיב נכון
-import { Auth } from '../../services/auth'; // וודאי שהנתיב נכון
+import { FormsModule } from '@angular/forms';
+// שינוי 1: מייבאים את Gift מהקובץ של הסרוויס במקום להגדיר אותו מחדש
+import { GiftsService, Gift } from '../../services/gifts'; 
+import { Auth } from '../../services/auth';  
 
-// הגדרת המנשק למתנה (אפשר גם בקובץ נפרד)
-export interface Gift {
-  id: number;
-  name: string;
-  description: string;
-  category: string;
-  cost: number;
-  imageUrl: string;
-  ticketCount?: number; // אופציונלי - למיון לפי פופולריות
-}
+// --- מחקתי מכאן את ה-interface Gift שהיה מיותר ---
 
 @Component({
   selector: 'app-gift-list',
@@ -24,17 +16,12 @@ export interface Gift {
 })
 export class GiftList implements OnInit {
   
-  // המערך שמוצג למשתמש (מסונן)
-  gifts: Gift[] = [];
-
-  // המערך המקורי (גיבוי מלא מהשרת) - כדי שהחיפוש לא "יאבד" מתנות
+  gifts: Gift[] = []; // עכשיו זה משתמש ב-Gift המקורי והנכון מהסרוויס
   originalGifts: Gift[] = [];
   
-  // משתנים לחיפוש ומיון
   searchTerm: string = '';
   sortBy: string = '';
 
-  // אירוע לעדכון העגלה
   @Output() itemAddedToCart = new EventEmitter<void>();
 
   constructor(
@@ -46,22 +33,16 @@ export class GiftList implements OnInit {
     this.loadGifts();
   }
 
-  // --- לוגיקת טעינה, חיפוש ומיון (צד לקוח) ---
-  
   loadGifts() {
-    // טוענים את הכל מהשרת פעם אחת
     this.giftsService.getGifts().subscribe(data => {
-      this.originalGifts = data; // שומרים בגיבוי
-      this.gifts = data;         // מציגים הכל בהתחלה
+      this.originalGifts = data;
+      this.gifts = data;
     });
   }
 
-  // הפונקציה הזו מופעלת בכל הקלדה או שינוי מיון
   applyFilter() {
-    // 1. מתחילים תמיד מהרשימה המקורית המלאה
     let tempGifts = [...this.originalGifts];
 
-    // 2. סינון לפי טקסט (חיפוש)
     if (this.searchTerm.trim() !== '') {
       const term = this.searchTerm.toLowerCase();
       tempGifts = tempGifts.filter(gift => 
@@ -70,40 +51,34 @@ export class GiftList implements OnInit {
       );
     }
 
-    // 3. מיון
     if (this.sortBy === 'expensive') {
-      // מהיקר לזול
       tempGifts.sort((a, b) => b.cost - a.cost); 
     } 
     else if (this.sortBy === 'popular') {
-      // מהנמכר ביותר (אם אין שדה כזה, זה לא ישנה כלום)
-      tempGifts.sort((a, b) => (b.ticketCount || 0) - (a.ticketCount || 0));
+      // אם ticketCount לא קיים ב-Interface המקורי, זה עלול לצעוק
+      // אם זה צועק, תוסיף ticketCount?: number ל-interface בסרוויס
+      tempGifts.sort((a, b) => (b['ticketCount'] || 0) - (a['ticketCount'] || 0));
     }
     else if (this.sortBy === 'cheap') {
-      // מהזול ליקר
       tempGifts.sort((a, b) => a.cost - b.cost);
     }
 
-    // 4. עדכון התצוגה
     this.gifts = tempGifts;
   }
 
   onSortChange(event: any) {
     this.sortBy = event.target.value;
-    this.applyFilter(); // הפעלת הסינון מחדש
+    this.applyFilter();
   }
 
-  // --- לוגיקת רכישה ---
-
   buyTickets(gift: Gift, quantityInput: HTMLInputElement) {
-    // 1. המרה למספרים
     const qty = parseInt(quantityInput.value);
     
-    // תיקון חשוב: שימוש ב-getCurrentUserId שמחזיר מספר
-    const userId = this.authService.getCurrentUser(); 
+    // הנחתי שזה שירות שקיים אצלך לפי הקוד
+    const userId = this.authService.getCurrentUser(); // וודא שזה מחזיר ID או מספר
 
-    // 2. בדיקות
-    if (!userId || userId <= 0) {
+    // בדיקה פשוטה למקרה שאין משתמש (תלוי איך המערכת שלך עובדת)
+    if (!userId) {
         alert("עליך להתחבר למערכת כדי לבצע רכישה!");
         return;
     }
@@ -113,21 +88,19 @@ export class GiftList implements OnInit {
         return;
     }
 
-    // 3. בניית האובייקט
     const purchaseRequest = {
-      userId: userId, 
+      userId: userId, // שים לב שזה מספר
       giftId: gift.id,   
       quantity: qty      
     };
 
     console.log("🚀 שולח לשרת:", purchaseRequest); 
 
-    // 4. שליחה
     this.giftsService.addToCart(purchaseRequest).subscribe({
       next: () => {
         alert("הכרטיסים נוספו לסל בהצלחה!");
         quantityInput.value = '';
-        this.itemAddedToCart.emit(); // עדכון העגלה בצד שמאל
+        this.itemAddedToCart.emit();  
       },
       error: (err) => {
         console.error("❌ שגיאה מהשרת:", err);

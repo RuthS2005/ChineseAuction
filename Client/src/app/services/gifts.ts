@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 ;
 
 // =====================
-// 1. Interfaces (חייבים להתאים ל-DTO בשרת)
+//     Interfaces
 // =====================
 
 export interface Gift {
@@ -16,10 +16,11 @@ export interface Gift {
   imageUrl: string;
   cost: number;
   donorId: number;
+  winnerName?: string; // זה חייב להיות כאן!
+  // ואם אתה רוצה למיין לפי פופולריות, כדאי להוסיף גם:
+  ticketCount?: number;
 }
-
 export interface CreateGiftDto {
-  // id is omitted because server usually creates it
   name: string;
   description: string;
   category: string;
@@ -41,7 +42,6 @@ export interface CreateDonorDto {
   phone?: string;
 }
 
-// זה ה-DTO שאנחנו שולחים לקנייה
 export interface PurchaseDto {
   userId: number;
   giftId: number;
@@ -49,7 +49,6 @@ export interface PurchaseDto {
 }
 
 export interface CartItem {
-  // adapt fields to server response
   id: number;
   giftId: number;
   quantity: number;
@@ -73,7 +72,7 @@ export interface User {
 }
 
 // =====================
-// 2. הסרוויס (הצינור לשרת)
+//       הסרוויס
 // =====================
 
 @Injectable({
@@ -81,36 +80,30 @@ export interface User {
 })
 export class GiftsService {
 
-  // 👇 use environment; fallback to previous hardcoded value if not set
   private apiUrl =  'http://localhost:5035/api';
 
   constructor(private http: HttpClient) { }
 
-  // small helper to build URLs and avoid accidental double-slashes
   private url(path: string) {
     const base = this.apiUrl.replace(/\/+$/, '');
     const p = path.replace(/^\/+/, '');
     return `${base}/${p}`;
   }
 
-  // centralized error handler (returns an observable error)
   private handleError(operation = 'operation') {
     return (error: any) => {
-      // TODO: replace console.error with a proper logger if available
       console.error(`${operation} failed:`, error);
       return throwError(() => new Error(`${operation} failed: ${error?.message || error}`));
     };
   }
 
   // =====================
-  // A. ניהול מתנות
+  //    ניהול מתנות
   // =====================
 
-// עדכון החתימה: מקבלים פרמטרים אופציונליים (סימן שאלה)
 getGifts(search?: string, sort?: string): Observable<Gift[]> {
   
-  // בניית הכתובת עם הפרמטרים
-  let url = `${this.apiUrl}/Gift`; // או /Gift תלוי בראוטר שלך
+  let url = `${this.apiUrl}/Gift`;
 
   if (search) {
     url += `search=${search}&`;
@@ -121,8 +114,6 @@ getGifts(search?: string, sort?: string): Observable<Gift[]> {
 
   return this.http.get<Gift[]>(url);
 }
-  // שים לב: אנחנו לא עושים push למערך, אלא שולחים לשרת
-  // Use CreateGiftDto for request and expect created Gift (with id) back from server
   addGift(gift: CreateGiftDto): Observable<Gift> {
     if (!gift || !gift.name || gift.cost == null) {
       return throwError(() => new Error('Invalid gift data'));
@@ -159,7 +150,6 @@ getGifts(search?: string, sort?: string): Observable<Gift[]> {
   // =====================
 
 getDonors(searchQuery: string = ''): Observable<Donor[]> {
-  // שולחים את הפרמטר לשרת
   return this.http.get<Donor[]>(`${this.apiUrl}/Donors?search=${searchQuery}`);
 }
 
@@ -179,7 +169,6 @@ getDonors(searchQuery: string = ''): Observable<Donor[]> {
       .pipe(catchError(this.handleError('deleteDonor')));
   }
 updateDonor(donor: any): Observable<any> {
-  // שימוש ב-apiUrl שלנו, ובלי ה-handleError המורכב כרגע
   return this.http.put(`${this.apiUrl}/Donors/${donor.id}`, donor);
 }
   // =====================
@@ -212,6 +201,14 @@ updateDonor(donor: any): Observable<any> {
     return this.http.post(this.url(`Purchases/Checkout/${userId}`), {})
       .pipe(catchError(this.handleError('checkout')));
   }
-
+// דוח זוכים
+  getWinnersReport(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Reports/winners`);
+  }
+  
+  // דוח הכנסות
+  getIncomeReport(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Reports/income`);
+  }
 
 }

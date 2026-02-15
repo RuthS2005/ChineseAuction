@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component , EventEmitter,Output,Input} from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-donor-form',
-  standalone:true,
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './donor-form.html',
-  styleUrls:['./donor-form.scss'] ,
+  styleUrls: ['./donor-form.scss'],
 })
 
 export class DonorForm {
@@ -16,7 +16,7 @@ export class DonorForm {
   @Output() saveDonor = new EventEmitter<any>();
 
   onSave() {
-      console.log("הילד שולח:", this.donor); // בוא נראה אם כאן השם כבר מעודכן
+    console.log("הילד שולח:", this.donor);
 
     this.saveDonor.emit(this.donor);
   }

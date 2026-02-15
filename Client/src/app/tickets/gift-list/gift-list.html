@@ -1,42 +1,34 @@
 <div class="gifts-container">
   <div class="filters-bar" style="display: flex; gap: 15px; margin-bottom: 20px; padding: 10px; background: #f9f9f9; border-radius: 8px;">
-  
-  <!-- חיפוש -->
-<input type="text" 
-       placeholder="🔍 חפש מתנה..." 
-       [(ngModel)]="searchTerm" 
-       (input)="applyFilter()" 
-       class="search-input">
+    <input type="text" placeholder="🔍 חפש מתנה..." [(ngModel)]="searchTerm" (input)="applyFilter()" class="search-input">
 
-<select (change)="onSortChange($event)" class="sort-select">
-    <option value="">מיון רגיל</option>
-    <option value="expensive">הכי יקר</option>
-    <option value="cheap">הכי זול</option>
-    <option value="popular">הכי נמכר</option>
-</select>
-
-</div>
-  <!-- לולאה: רצה רק אם יש מתנות -->
-  <!-- שים לב: ה-ngFor נמצא על ה-div של הכרטיס -->
-  <div class="gift-card" *ngFor="let gift of gifts">
-
-    <img [src]="gift.imageUrl" *ngIf="gift.imageUrl" alt="תמונת מתנה" style="max-width: 100px;">
-      <h3>{{ gift.name }}</h3>
-      <p>{{ gift.id }}</p>
-   <!-- <p>כרטיסים שנמכרו: {{ gift.ticketsSold }}</p> -->
-
-              <input type="number" min="1" placeholder="כמות הכרטיסים" #qtyInput>
-
-                      <!-- בלחיצה, אנחנו שולחים את המתנה ואת הערך מה-input -->
-        <button (click)="buyTickets(gift, qtyInput)">
-          רכוש כרטיסים
-        </button>
-
+    <select (change)="onSortChange($event)" class="sort-select">
+      <option value="">מיון רגיל</option>
+      <option value="expensive">הכי יקר</option>
+      <option value="cheap">הכי זול</option>
+      <option value="popular">הכי נמכר</option>
+    </select>
   </div>
 
+  <div class="gift-card" *ngFor="let gift of gifts">
+    <img [src]="gift.imageUrl" *ngIf="gift.imageUrl" alt="תמונת מתנה" style="max-width: 100px;">
+    <h3>{{ gift.name }}</h3>
+    <p>מחיר: {{ gift.cost }} ₪</p>
+    
+    <div *ngIf="gift.winnerName" class="winner-box" style="background-color: #d4edda; padding: 10px; border-radius: 5px; color: green; font-weight: bold;">
+        🏆 הזוכה המאושר:<br>
+        {{ gift.winnerName }}
+    </div>
+
+    <div *ngIf="!gift.winnerName" class="purchase-area">
+        <input type="number" min="1" placeholder="כמות" #qtyInput>
+        <button (click)="buyTickets(gift, qtyInput)">
+            הוסף לסל
+        </button>
+    </div>
+  </div>
 </div>
 
-<!-- הודעה ריקה: נמצאת מחוץ ללולאה לחלוטין! -->
 <div *ngIf="gifts.length === 0" style="padding: 20px; text-align: center;">
-  <h3>...לא נטענו מתנות</h3>
+  <h3>לא נמצאו מתנות...</h3>
 </div>

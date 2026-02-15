@@ -27,7 +27,7 @@ loadCart() {
     this.giftsService.getCart(userId).subscribe(items => {
       console.log("📦 מוצרים שהגיעו מהשרת:", items); // <--- הוסף את זה!
       this.cartItems = items;
-      this.calculateTotal(); // אם יש לך פונקציית חישוב סכום
+      this.calculateTotal();
     });
   }
 }
@@ -37,7 +37,6 @@ loadCart() {
   }
 
 onCheckout() {
-    // 1. שימוש בפונקציה שמחזירה מספר (ולא אובייקט)
     const userId = this.auth.getCurrentUser(); 
     
     console.log("🚀 מנסה לבצע תשלום עבור משתמש מספר:", userId);
@@ -47,7 +46,6 @@ onCheckout() {
         return;
     }
 
-    // 2. שליחה לשרת
     this.giftsService.checkout(userId).subscribe({
       next: (res) => {
         console.log("✅ תשלום עבר בהצלחה:", res);

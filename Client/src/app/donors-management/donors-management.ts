@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DonorForm } from './donor-form/donor-form';
 import { DonorsList } from './donors-list/donors-list';
 import { CommonModule } from '@angular/common';
-import { GiftsService } from '../services/gifts'; 
+import { GiftsService } from '../services/gifts';
 import { FormsModule } from '@angular/forms';
 
 @Component({

@@ -2,14 +2,14 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   
-  // 1. ננסה לשלוף את המשתמש מהזיכרון
+  //   לשלוף את המשתמש מהזיכרון
   const userString = localStorage.getItem('user');
   
   if (userString) {
     const user = JSON.parse(userString);
     const token = user.token || user.Token; // גמישות לאותיות גדולות/קטנות
 
-    // 2. אם יש טוקן - נשכפל את הבקשה ונוסיף לה את הכותרת
+    // 2. אם יש טוקן - שכפל את הבקשה ונוסיף לה את הכותרת
     if (token) {
       const clonedRequest = req.clone({
         setHeaders: {
