@@ -86,5 +86,32 @@ namespace MechiraSinit.Services
 
             return items;
         }
+        public List<ReportIncomeDto> GetIncomeReport()
+        {
+            // חישוב הכנסות לכל מתנה
+            // אנחנו מסתכלים על טבלת הרכישות, מקבצים לפי GiftId
+            var report = _context.Purchases
+                .Where(p => p.IsPaid) // רק מה ששולם!
+                .Include(p => p.Gift)
+                .GroupBy(p => p.Gift.Name)
+                .Select(group => new ReportIncomeDto
+                {
+                    GiftName = group.Key,
+                    SalesCount = group.Count(),
+                    // סכום: מספר הפריטים * מחיר המתנה (מניחים שלכל הפריטים בקבוצה אותו מחיר)
+                    // הערה: עדיף לקחת את המחיר מהמתנה עצמה
+                    TotalIncome = group.Sum(p => p.Gift.Cost)
+                })
+                .ToList();
+
+            return report;
+        }
+
+        public decimal GetTotalIncome()
+        {
+            return _context.Purchases
+                .Where(p => p.IsPaid)
+                .Sum(p => p.Gift.Cost);
+        }
     }
 }

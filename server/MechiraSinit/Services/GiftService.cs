@@ -68,18 +68,24 @@ namespace MechiraSinit.Services
                     break;
             }
 
-            // --- 3. המרה ל-DTO והחזרה ---
             return query.Select(g => new GiftDto
             {
                 Id = g.Id,
                 Name = g.Name,
                 Description = g.Description,
                 Category = g.Category,
-                ImageUrl = g.Image, // או g.Image (תלוי במודל שלך)
+                ImageUrl = g.Image,
                 Cost = g.Cost,
                 DonorId = g.DonorId,
-                // אופציונלי: להחזיר גם את שם התורם וכמות המכירות לשימוש בטבלה
-                // TicketsSold = g.TicketsSold 
+
+                // 👇👇👇 התיקון: שליפת שם הזוכה 👇👇👇
+                // אנחנו אומרים: "לך לטבלת Users, תמצא את מי שה-ID שלו שווה ל-WinnerUserId של המתנה, ותביא את השם שלו"
+                WinnerName = g.WinnerUserId != null
+             ? _context.Users
+                 .Where(u => u.Id == g.WinnerUserId)
+                 .Select(u => u.Name)
+                 .FirstOrDefault()
+             : null
             }).ToList();
         }
         public bool UpdateGift(int id, GiftDto giftDto)
@@ -141,6 +147,31 @@ namespace MechiraSinit.Services
             _context.SaveChanges();
 
             return winningPurchase.User; // מחזירים את המשתמש המאושר
+        }
+        public List<ReportWinnerDto> GetWinnersReport()
+        {
+            // שולפים את כל המתנות, כולל המידע על המנצח (אם יש)
+            var gifts = _context.Gifts
+                .Include(g => g.Purchases) // כדי לגשת ליוזר דרך הרכישה הזוכה? לא, יש לנו WinnerUserId
+                                           // רגע, במודל שלנו שמרנו WinnerUserId.
+                                           // אז נצטרך לעשות Join או לשלוף את היוזר.
+                                           // הדרך הכי קלה: נשתמש ב-Join ידני או נשנה את המודל שיכלול Navigation Property ל-User Winner.
+                                           // נניח כרגע שאין Navigation Property ישיר, אז נעשה את זה חכם:
+                .ToList();
+
+            // נשלוף את כל המשתמשים כדי לחבר שמות (או שנעשה את זה בשאילתה אחת אם נוסיף קשר ב-DB)
+            var users = _context.Users.ToDictionary(u => u.Id, u => u);
+
+            return gifts.Select(g => new ReportWinnerDto
+            {
+                GiftName = g.Name,
+                WinnerName = g.WinnerUserId.HasValue && users.ContainsKey(g.WinnerUserId.Value)
+                             ? $"{users[g.WinnerUserId.Value].Name} "
+                             : "טרם בוצעה הגרלה",
+                WinnerEmail = g.WinnerUserId.HasValue && users.ContainsKey(g.WinnerUserId.Value)
+                             ? users[g.WinnerUserId.Value].Email
+                             : ""
+            }).ToList();
         }
 
     }
