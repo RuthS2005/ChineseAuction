@@ -22,7 +22,7 @@ namespace MechiraSinit.Services
             if (gift == null)
                 throw new Exception("המתנה לא קיימת");
         
-            if (gift.WinnerUserId != null && gift.WinnerUserId > 0)
+            if (gift.WinnerName != null )
                 
                 throw new Exception("ההגרלה הסתיימה, לא ניתן לרכוש כרטיסים");
 

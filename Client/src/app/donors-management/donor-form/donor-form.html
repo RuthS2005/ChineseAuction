@@ -1,7 +1,21 @@
-<input [(ngModel)]="donor.name" name="donorName" placeholder="שם" />
+<form [formGroup]="donorForm" (ngSubmit)="onSave()">
+  <div>
+    <input formControlName="name" placeholder="שם תורם" />
+    <small *ngIf="donorForm.get('name')?.invalid && donorForm.get('name')?.touched" style="color:red">
+      שם חייב להכיל לפחות 2 תווים
+    </small>
+  </div>
 
-<input [(ngModel)]="donor.phone" name="donorPhone" placeholder="טלפון" />
+  <div>
+    <input formControlName="phone" placeholder="טלפון" />
+    <small *ngIf="donorForm.get('phone')?.invalid && donorForm.get('phone')?.touched" style="color:red">
+      מספר טלפון לא תקין (9-10 ספרות)
+    </small>
+  </div>
 
-<input type="email" [(ngModel)]="donor.email" name="donorEmail" placeholder="אימייל">
+  <div>
+    <input type="email" formControlName="email" placeholder="אימייל" />
+  </div>
 
-<button (click)="onSave()">שמירה</button>
+  <button type="submit" [disabled]="donorForm.invalid">שמירה</button>
+</form>

@@ -23,30 +23,29 @@ namespace MechiraSinit.Services
                 Category = giftDto.Category,
                 Image = giftDto.ImageUrl,
                 Cost = giftDto.Cost,
-                DonorId = giftDto.DonorId
+                DonorId = giftDto.DonorId,
+                WinnerName = null // מתנה חדשה, אין עדיין זוכה
             };
             _context.Gifts.Add(newGift);
             _context.SaveChanges();
             return newGift.Id;
         }
-        // הוספנו פרמטרים: טקסט לחיפוש, וסוג מיון
+
         public List<GiftDto> GetAllGifts(string? search, string? sort)
         {
             var query = _context.Gifts
-                .Include(g => g.Donor) // חייב את התורם בשביל החיפוש
+                .Include(g => g.Donor)
                 .AsQueryable();
 
-            // --- 1. חיפוש (Filtering) ---
+            // --- 1. חיפוש ---
             if (!string.IsNullOrEmpty(search))
             {
-                // אם החיפוש הוא מספר - נחפש לפי כמות כרטיסים שנמכרו
                 if (int.TryParse(search, out int soldCount))
                 {
                     query = query.Where(g => g.TicketsSold >= soldCount);
                 }
                 else
                 {
-                    // אחרת - נחפש לפי שם מתנה או שם תורם
                     query = query.Where(g =>
                         g.Name.Contains(search) ||
                         (g.Donor != null && g.Donor.Name.Contains(search))
@@ -54,20 +53,25 @@ namespace MechiraSinit.Services
                 }
             }
 
-            // --- 2. מיון (Sorting) ---
+            // --- 2. מיון ---
             switch (sort)
             {
-                case "expensive": // הכי יקר
+                case "expensive":
                     query = query.OrderByDescending(g => g.Cost);
                     break;
-                case "popular": // הכי נרכש
+                case "popular":
                     query = query.OrderByDescending(g => g.TicketsSold);
                     break;
-                default: // ברירת מחדל (למשל לפי ID או שם)
+                case "cheap":
+                    query = query.OrderBy(g => g.Cost);
+                    break;
+                default:
                     query = query.OrderBy(g => g.Id);
                     break;
             }
 
+            // המרה ל-DTO
+            // שימי לב כמה זה פשוט עכשיו: השם כבר נמצא בתוך המתנה!
             return query.Select(g => new GiftDto
             {
                 Id = g.Id,
@@ -77,102 +81,109 @@ namespace MechiraSinit.Services
                 ImageUrl = g.Image,
                 Cost = g.Cost,
                 DonorId = g.DonorId,
-
-                // 👇👇👇 התיקון: שליפת שם הזוכה 👇👇👇
-                // אנחנו אומרים: "לך לטבלת Users, תמצא את מי שה-ID שלו שווה ל-WinnerUserId של המתנה, ותביא את השם שלו"
-                WinnerName = g.WinnerUserId != null
-             ? _context.Users
-                 .Where(u => u.Id == g.WinnerUserId)
-                 .Select(u => u.Name)
-                 .FirstOrDefault()
-             : null
+                WinnerName = g.WinnerName // <--- פשוט מעתיקים את השם
             }).ToList();
         }
+
         public bool UpdateGift(int id, GiftDto giftDto)
         {
             var gift = _context.Gifts.Find(id);
-            if (gift == null)
-            {
-                return false;
-            }
+            if (gift == null) return false;
 
-            // Update allowed fields
             gift.Name = giftDto.Name;
             gift.Description = giftDto.Description;
             gift.Category = giftDto.Category;
             gift.Image = giftDto.ImageUrl;
             gift.Cost = giftDto.Cost;
             gift.DonorId = giftDto.DonorId;
+            // לא מעדכנים כאן את WinnerName, כי זה קורה רק בהגרלה
 
             _context.SaveChanges();
             return true;
         }
+
         public bool DeleteGift(int id)
         {
-            var gift = _context.Gifts.FirstOrDefault(g => g.Id == id);
+            var gift = _context.Gifts
+                .Include(g => g.Purchases)
+                .FirstOrDefault(g => g.Id == id);
+
             if (gift == null) return false;
+
+            bool hasFinalizedPurchases = gift.Purchases.Any(p => p.IsPaid);
+            if (hasFinalizedPurchases)
+            {
+                throw new Exception("לא ניתן למחוק מתנה שנרכשו עבורה כרטיסים סופיים.");
+            }
 
             _context.Gifts.Remove(gift);
             _context.SaveChanges();
             return true;
         }
+
+        public Gift GetGiftById(int id)
+        {
+            return _context.Gifts.FirstOrDefault(g => g.Id == id);
+        }
+
         public User? RunRaffle(int giftId)
         {
-            // 1. שליפת המתנה + רשימת הרכישות + פרטי המשתמשים
             var gift = _context.Gifts
                 .Include(g => g.Purchases)
-                .ThenInclude(p => p.User) // חשוב! טוען את היוזר כדי שנוכל להחזיר אותו
+                .ThenInclude(p => p.User) // חייבים לטעון את היוזר כדי לקחת את שמו
                 .FirstOrDefault(g => g.Id == giftId);
 
-            // בדיקות תקינות
-            if (gift == null)
-                throw new Exception("המתנה לא נמצאה.");
+            if (gift == null) throw new Exception("המתנה לא נמצאה.");
 
-            if (gift.WinnerUserId != null)
+            // בדיקה אם השדה מלא
+            if (!string.IsNullOrEmpty(gift.WinnerName))
                 throw new Exception("ההגרלה כבר בוצעה למתנה זו!");
 
-            // 2. סינון: לוקחים רק כרטיסים ששולמו (IsPaid = true)
             var validPurchases = gift.Purchases.Where(p => p.IsPaid).ToList();
 
             if (validPurchases.Count == 0)
                 throw new Exception("לא נרכשו כרטיסים למתנה זו, אי אפשר להגריל.");
 
-            // 3. הגרלה רנדומלית
             var random = new Random();
-            int index = random.Next(validPurchases.Count); // בוחר מספר בין 0 לכמות הכרטיסים
+            int index = random.Next(validPurchases.Count);
             var winningPurchase = validPurchases[index];
 
-            // 4. עדכון הזוכה ושמירה
-            gift.WinnerUserId = winningPurchase.UserId;
+            // --- כאן השינוי הגדול ---
+            // אנחנו שומרים את השם של הזוכה בתוך המתנה
+            gift.WinnerName = winningPurchase.User.Name;
+
             _context.SaveChanges();
 
-            return winningPurchase.User; // מחזירים את המשתמש המאושר
+            return winningPurchase.User; // מחזירים את האובייקט המלא למקרה שצריך אותו בקונטרולר
         }
+
         public List<ReportWinnerDto> GetWinnersReport()
         {
-            // שולפים את כל המתנות, כולל המידע על המנצח (אם יש)
+            // שולפים את כל המתנות שכבר יש להן זוכה (שהשם לא ריק)
             var gifts = _context.Gifts
-                .Include(g => g.Purchases) // כדי לגשת ליוזר דרך הרכישה הזוכה? לא, יש לנו WinnerUserId
-                                           // רגע, במודל שלנו שמרנו WinnerUserId.
-                                           // אז נצטרך לעשות Join או לשלוף את היוזר.
-                                           // הדרך הכי קלה: נשתמש ב-Join ידני או נשנה את המודל שיכלול Navigation Property ל-User Winner.
-                                           // נניח כרגע שאין Navigation Property ישיר, אז נעשה את זה חכם:
+                .Where(g => !string.IsNullOrEmpty(g.WinnerName))
                 .ToList();
 
-            // נשלוף את כל המשתמשים כדי לחבר שמות (או שנעשה את זה בשאילתה אחת אם נוסיף קשר ב-DB)
-            var users = _context.Users.ToDictionary(u => u.Id, u => u);
+            // הערה: בגלל שמחקנו את ה-ID, קשה יותר להשיג את המייל של הזוכה בדיוק מושלם
+            // (כי יכולים להיות שני יוזרים בשם "משה כהן").
+            // הפתרון הפשוט כאן הוא להחזיר רק את השם, או לנסות למצוא מייל לפי שם (אופציונלי).
+            // כאן עשיתי חיפוש "Best Effort" למייל, אבל זה לא קריטי אם לא צריך.
+
+            // שליפת כל היוזרים לזיכרון כדי למצוא מיילים לפי שמות (אם המערכת קטנה זה בסדר)
+            var usersByName = _context.Users
+                                      .GroupBy(u => u.Name) // למקרה של כפילויות שמות
+                                      .ToDictionary(g => g.Key, g => g.First().Email);
 
             return gifts.Select(g => new ReportWinnerDto
             {
                 GiftName = g.Name,
-                WinnerName = g.WinnerUserId.HasValue && users.ContainsKey(g.WinnerUserId.Value)
-                             ? $"{users[g.WinnerUserId.Value].Name} "
-                             : "טרם בוצעה הגרלה",
-                WinnerEmail = g.WinnerUserId.HasValue && users.ContainsKey(g.WinnerUserId.Value)
-                             ? users[g.WinnerUserId.Value].Email
-                             : ""
+                WinnerName = g.WinnerName,
+
+                // מנסים למצוא את המייל לפי השם ששמרנו
+                WinnerEmail = (g.WinnerName != null && usersByName.ContainsKey(g.WinnerName))
+                              ? usersByName[g.WinnerName]
+                              : "לא נמצא מייל"
             }).ToList();
         }
-
     }
 }

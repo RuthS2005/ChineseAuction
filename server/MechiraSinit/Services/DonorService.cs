@@ -35,7 +35,7 @@ namespace MechiraSinit.Services
                 Id = d.Id,
                 Name = d.Name,
                 Email = d.Email,
-                Phone = d.Phone
+                Phone = d.Phone,
             }).ToList();
         }
         public DonorDto GetDonorById(int id)

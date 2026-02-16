@@ -5,13 +5,29 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Serilog;
 
 
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// --- הגדרת Serilog ---
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console() // לכתוב לחלון השחור
+    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day) // לכתוב לקובץ יומי בתיקיית logs
+    .CreateLogger();
 
-builder.Services.AddControllers();
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
+
+    // 2. חיבור Serilog לתוך ה-Builder
+    builder.Host.UseSerilog();
+
+    // ... כאן ממשיך הקוד הרגיל שלך (AddControllers, AddDbContext וכו') ...
+
+
+    // Add services to the container.
+
+    builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
@@ -100,3 +116,13 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "האפליקציה קרסה באופן בלתי צפוי");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

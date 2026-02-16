@@ -4,6 +4,6 @@
     {
         public string GiftName { get; set; } = string.Empty;
         public string WinnerName { get; set; } = "טרם בוצעה הגרלה";
-        public string WinnerEmail { get; set; } = "";
+        public string WinnerEmail { get; set; } = string.Empty;
     }
 }

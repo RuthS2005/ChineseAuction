@@ -2,28 +2,32 @@
 
   <h2 style="text-align: center;">{{ isLoginMode ? 'כניסה למערכת' : 'הרשמה חדשה' }}</h2>
 
-  <form (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 10px;">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 10px;">
 
-    <!-- שדות שמופיעים רק בהרשמה -->
-    <div *ngIf="!isLoginMode">
-      <input type="text" placeholder="שם פרטי" [(ngModel)]="userData.firstName" name="first" required
-        style="width: 100%; padding: 8px;">
-      <br><br>
-      <input type="text" placeholder="שם משפחה" [(ngModel)]="userData.lastName" name="last" required
-        style="width: 100%; padding: 8px;">
-      <br><br>
-      <input type="text" placeholder="טלפון" [(ngModel)]="userData.phone" name="phone" required
-        style="width: 100%; padding: 8px;">
-      <br><br>
+    <div *ngIf="!isLoginMode" style="display: flex; flex-direction: column; gap: 10px;">
+      <input type="text" placeholder="שם משתמש" formControlName="username" style="width: 100%; padding: 8px;">
+      <small *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" style="color:red">
+        שם משתמש חובה (מינימום 3 תווים)
+      </small>
+
+      <input type="text" placeholder="טלפון" formControlName="phone" style="width: 100%; padding: 8px;">
+      <small *ngIf="loginForm.get('phone')?.invalid && loginForm.get('phone')?.touched" style="color:red">
+        מספר טלפון חייב להכיל 9-10 ספרות
+      </small>
     </div>
 
-    <!-- שדות שמופיעים תמיד -->
-    <input type="email" placeholder="אימייל" [(ngModel)]="userData.email" name="email" required
-      style="width: 100%; padding: 8px;">
-    <input type="password" placeholder="סיסמה" [(ngModel)]="userData.password" name="pass" required
-      style="width: 100%; padding: 8px;">
+    <input type="email" placeholder="אימייל" formControlName="email" style="width: 100%; padding: 8px;">
+    <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" style="color:red">
+      כתובת אימייל לא תקינה
+    </small>
 
-    <button type="submit" style="background-color: #007bff; color: white; padding: 10px; cursor: pointer;">
+    <input type="password" placeholder="סיסמה" formControlName="password" style="width: 100%; padding: 8px;">
+    <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" style="color:red">
+      סיסמה חייבת להכיל לפחות 6 תווים
+    </small>
+
+    <button type="submit" [disabled]="loginForm.invalid" 
+      style="background-color: #007bff; color: white; padding: 10px; cursor: pointer; border: none; border-radius: 5px;">
       {{ isLoginMode ? 'התחבר' : 'הירשם' }}
     </button>
   </form>

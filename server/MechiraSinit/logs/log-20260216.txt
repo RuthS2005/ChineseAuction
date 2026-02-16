@@ -1,0 +1,642 @@
+2026-02-16 02:56:49.630 +02:00 [INF] User profile is available. Using 'C:\Users\משתמש\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-16 02:56:50.145 +02:00 [INF] Now listening on: http://localhost:5035
+2026-02-16 02:56:50.397 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-16 02:56:50.403 +02:00 [INF] Hosting environment: Development
+2026-02-16 02:56:50.404 +02:00 [INF] Content root path: D:\לימודים יד\ChineseAuctionProject\server\MechiraSinit
+2026-02-16 02:56:50.526 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/swagger/index.html - null null
+2026-02-16 02:56:50.974 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/swagger/index.html - 200 null text/html;charset=utf-8 461.619ms
+2026-02-16 02:56:50.980 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/_vs/browserLink - null null
+2026-02-16 02:56:50.991 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/_framework/aspnetcore-browser-refresh.js - null null
+2026-02-16 02:56:51.003 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 11.9176ms
+2026-02-16 02:56:51.039 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.6567ms
+2026-02-16 02:56:51.077 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/swagger/v1/swagger.json - null null
+2026-02-16 02:56:51.105 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 27.58ms
+2026-02-16 02:57:53.422 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - null null
+2026-02-16 02:57:53.446 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-02-16 02:57:53.450 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:53.455 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - 204 null null 33.1129ms
+2026-02-16 02:57:53.463 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:57:53.472 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:54.045 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:54'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:57:54.112 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:54'.
+2026-02-16 02:57:54.126 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:54.184 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:57:54.515 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:57:54.607 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:57:54.611 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:54.614 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:54'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:57:54.617 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:54'.
+2026-02-16 02:57:54.618 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:54.620 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:57:54.624 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:57:55.243 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:57:55.250 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:55.255 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:55'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:57:55.258 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:55'.
+2026-02-16 02:57:55.260 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:55.261 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:57:55.267 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:57:56.219 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:57:56.225 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:56.228 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:56'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:57:56.233 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:56'.
+2026-02-16 02:57:56.235 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:56.238 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:57:56.242 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:57:56.441 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:57:56.454 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:57:56.458 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:56'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:57:56.465 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:57:56'.
+2026-02-16 02:57:56.498 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:56.501 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:57:56.506 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:57:57.110 +02:00 [INF] Executed DbCommand (121ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:57:57.110 +02:00 [INF] Executed DbCommand (121ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:57:57.110 +02:00 [INF] Executed DbCommand (121ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:57:57.110 +02:00 [INF] Executed DbCommand (121ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:57:57.110 +02:00 [INF] Executed DbCommand (121ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:57:57.146 +02:00 [WRN] כישלון בהתחברות (פרטים שגויים) עבור: as@gmail.com
+2026-02-16 02:57:57.146 +02:00 [WRN] כישלון בהתחברות (פרטים שגויים) עבור: as@gmail.com
+2026-02-16 02:57:57.146 +02:00 [WRN] כישלון בהתחברות (פרטים שגויים) עבור: as@gmail.com
+2026-02-16 02:57:57.146 +02:00 [WRN] כישלון בהתחברות (פרטים שגויים) עבור: as@gmail.com
+2026-02-16 02:57:57.146 +02:00 [WRN] כישלון בהתחברות (פרטים שגויים) עבור: as@gmail.com
+2026-02-16 02:57:57.155 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 02:57:57.155 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 02:57:57.155 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 02:57:57.155 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 02:57:57.155 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 02:57:57.185 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 1904.2204ms
+2026-02-16 02:57:57.185 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 2979.1774ms
+2026-02-16 02:57:57.185 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 2545.9287ms
+2026-02-16 02:57:57.185 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 926.4039ms
+2026-02-16 02:57:57.185 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 662.8401ms
+2026-02-16 02:57:57.187 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:57.190 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:57.192 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:57.194 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:57.196 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:57:57.220 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 401 null application/json; charset=utf-8 1001.3445ms
+2026-02-16 02:57:57.220 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 401 null application/json; charset=utf-8 2613.7261ms
+2026-02-16 02:57:57.220 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 401 null application/json; charset=utf-8 783.998ms
+2026-02-16 02:57:57.220 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 401 null application/json; charset=utf-8 3757.9119ms
+2026-02-16 02:57:57.221 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 401 null application/json; charset=utf-8 1977.8589ms
+2026-02-16 02:59:45.963 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - null null
+2026-02-16 02:59:45.973 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:59:45.976 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - 204 null null 16.9146ms
+2026-02-16 02:59:45.989 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 02:59:45.992 +02:00 [INF] CORS policy execution successful.
+2026-02-16 02:59:45.995 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:59:45'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-02-16 02:59:45.999 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '15/02/2026 22:20:43', Current time (UTC): '16/02/2026 00:59:45'.
+2026-02-16 02:59:46.001 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:59:46.003 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 02:59:46.008 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 02:59:46.022 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 02:59:46.259 +02:00 [INF] התחברות מוצלחת: as@gmail.com, תפקיד: "Manager"
+2026-02-16 02:59:46.277 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`4[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[MechiraSinit.Models.UserRole, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 02:59:46.295 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 288.6624ms
+2026-02-16 02:59:46.299 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 02:59:46.300 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 200 null application/json; charset=utf-8 311.4574ms
+2026-02-16 03:00:00.724 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:00:00.733 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:00.739 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - 204 null null 14.6553ms
+2026-02-16 03:00:00.776 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:00:00.798 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:00.826 +02:00 [INF] Executing endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:00:00.833 +02:00 [INF] Route matched with {action = "GetAll", controller = "Donors"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String) on controller DonorsController (MechiraSinit).
+2026-02-16 03:00:00.885 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[Name], [d].[Email], [d].[Phone]
+FROM [Donors] AS [d]
+2026-02-16 03:00:00.890 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.DonorDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:00:00.896 +02:00 [INF] Executed action DonorsController.GetAll (MechiraSinit) in 60.0929ms
+2026-02-16 03:00:00.898 +02:00 [INF] Executed endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:00:00.900 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Donors?search= - 200 null application/json; charset=utf-8 124.3235ms
+2026-02-16 03:00:41.094 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Donors/1 - null null
+2026-02-16 03:00:41.108 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:41.125 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Donors/1 - 204 null null 33.9413ms
+2026-02-16 03:00:41.167 +02:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5035/api/Donors/1 - application/json 70
+2026-02-16 03:00:41.171 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:41.176 +02:00 [INF] Executing endpoint 'DonorsController.Update (MechiraSinit)'
+2026-02-16 03:00:41.180 +02:00 [INF] Route matched with {action = "Update", controller = "Donors"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Int32, MechiraSinit.Dto.DonorDto) on controller DonorsController (MechiraSinit).
+2026-02-16 03:00:41.195 +02:00 [INF] מעדכן פרטי תורם: 1
+2026-02-16 03:00:41.215 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__donorDto_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[Email], [d].[Name], [d].[Phone]
+FROM [Donors] AS [d]
+WHERE [d].[Id] = @__donorDto_Id_0
+2026-02-16 03:00:41.471 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Donors] SET [Phone] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-02-16 03:00:41.486 +02:00 [INF] תורם 1 עודכן בהצלחה
+2026-02-16 03:00:41.489 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:00:41.491 +02:00 [INF] Executed action DonorsController.Update (MechiraSinit) in 308.0712ms
+2026-02-16 03:00:41.493 +02:00 [INF] Executed endpoint 'DonorsController.Update (MechiraSinit)'
+2026-02-16 03:00:41.495 +02:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5035/api/Donors/1 - 200 null application/json; charset=utf-8 328.4872ms
+2026-02-16 03:00:50.085 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Reports/winners - null null
+2026-02-16 03:00:50.086 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Reports/income - null null
+2026-02-16 03:00:50.102 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:50.107 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:50.107 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Reports/winners - 204 null null 21.4402ms
+2026-02-16 03:00:50.108 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Reports/income - 204 null null 22.6543ms
+2026-02-16 03:00:50.123 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Reports/winners - null null
+2026-02-16 03:00:50.128 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Reports/income - null null
+2026-02-16 03:00:50.131 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:50.134 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:50.139 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.ReportsController.GetIncome (MechiraSinit)'
+2026-02-16 03:00:50.139 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.ReportsController.GetWinners (MechiraSinit)'
+2026-02-16 03:00:50.143 +02:00 [INF] Route matched with {action = "GetIncome", controller = "Reports"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetIncome() on controller MechiraSinit.Controllers.ReportsController (MechiraSinit).
+2026-02-16 03:00:50.144 +02:00 [INF] Route matched with {action = "GetWinners", controller = "Reports"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetWinners() on controller MechiraSinit.Controllers.ReportsController (MechiraSinit).
+2026-02-16 03:00:50.236 +02:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[WinnerName] IS NOT NULL AND [g].[WinnerName] NOT LIKE N''
+2026-02-16 03:00:50.303 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Name], [u].[Id], [u].[Email], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+ORDER BY [u].[Name]
+2026-02-16 03:00:50.310 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType9`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[MechiraSinit.Dto.ReportWinnerDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:00:50.315 +02:00 [INF] Executed action MechiraSinit.Controllers.ReportsController.GetWinners (MechiraSinit) in 166.6702ms
+2026-02-16 03:00:50.317 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.ReportsController.GetWinners (MechiraSinit)'
+2026-02-16 03:00:50.318 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Reports/winners - 200 null application/json; charset=utf-8 195.557ms
+2026-02-16 03:00:50.357 +02:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Name] AS [GiftName], COUNT(*) AS [SalesCount], CAST((
+    SELECT COALESCE(SUM([g1].[Cost]), 0)
+    FROM [Purchases] AS [p0]
+    INNER JOIN [Gifts] AS [g0] ON [p0].[GiftId] = [g0].[Id]
+    INNER JOIN [Gifts] AS [g1] ON [p0].[GiftId] = [g1].[Id]
+    WHERE [p0].[IsPaid] = CAST(1 AS bit) AND [g].[Name] = [g0].[Name]) AS decimal(18,2)) AS [TotalIncome]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[IsPaid] = CAST(1 AS bit)
+GROUP BY [g].[Name]
+2026-02-16 03:00:50.380 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COALESCE(SUM([g].[Cost]), 0)
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[IsPaid] = CAST(1 AS bit)
+2026-02-16 03:00:50.385 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType10`3[[System.Collections.Generic.List`1[[MechiraSinit.Dto.ReportIncomeDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:00:50.407 +02:00 [INF] Executed action MechiraSinit.Controllers.ReportsController.GetIncome (MechiraSinit) in 261.0714ms
+2026-02-16 03:00:50.409 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.ReportsController.GetIncome (MechiraSinit)'
+2026-02-16 03:00:50.411 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Reports/income - 200 null application/json; charset=utf-8 283.5013ms
+2026-02-16 03:00:57.013 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - null null
+2026-02-16 03:00:57.017 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:00:57.044 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:57.058 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:57.059 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - 204 null null 46.8776ms
+2026-02-16 03:00:57.061 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - 204 null null 44.6631ms
+2026-02-16 03:00:57.079 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Gift - null null
+2026-02-16 03:00:57.083 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:00:57.085 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:57.088 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:00:57.089 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:00:57.091 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:00:57.092 +02:00 [INF] Route matched with {action = "GetAllGifts", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGifts(System.String, System.String) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:00:57.095 +02:00 [INF] Route matched with {action = "GetCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCart(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:00:57.121 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name], [g].[Description], [g].[Category], [g].[Image] AS [ImageUrl], [g].[Cost], [g].[DonorId], [g].[WinnerName]
+FROM [Gifts] AS [g]
+ORDER BY [g].[Id]
+2026-02-16 03:00:57.140 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id] AS [PurchaseId], [g].[Name] AS [GiftName], [g].[Cost] AS [Price], [g].[Image]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:00:57.143 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:00:57.146 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit) in 47.421ms
+2026-02-16 03:00:57.149 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:00:57.152 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - 200 null application/json; charset=utf-8 69.1787ms
+2026-02-16 03:00:57.511 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.GiftDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:00:57.604 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit) in 509.0695ms
+2026-02-16 03:00:57.607 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:00:57.610 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Gift - 200 null application/json; charset=utf-8 530.6678ms
+2026-02-16 03:01:05.194 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/AddToCart - null null
+2026-02-16 03:01:05.200 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:05.203 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/AddToCart - 204 null null 8.8474ms
+2026-02-16 03:01:05.210 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Purchases/AddToCart - application/json 37
+2026-02-16 03:01:05.214 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:05.217 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit)'
+2026-02-16 03:01:05.221 +02:00 [INF] Route matched with {action = "AddToCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddToCart(MechiraSinit.Dto.NewPurchaseDto) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:05.250 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[Id] = @__id_0
+2026-02-16 03:01:05.374 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__dto_GiftId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[Id] = @__dto_GiftId_0
+2026-02-16 03:01:05.595 +02:00 [INF] Executed DbCommand (25ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [Purchases] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1)) AS i ([GiftId], [IsPaid], [PurchaseDate], [Quantity], [UserId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([GiftId], [IsPaid], [PurchaseDate], [Quantity], [UserId])
+VALUES (i.[GiftId], i.[IsPaid], i.[PurchaseDate], i.[Quantity], i.[UserId])
+OUTPUT INSERTED.[Id], i._Position;
+2026-02-16 03:01:05.633 +02:00 [INF] משתמש 2 הוסיף לסל כרטיסים למתנה 25
+2026-02-16 03:01:05.636 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType7`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:05.639 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit) in 414.7369ms
+2026-02-16 03:01:05.641 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit)'
+2026-02-16 03:01:05.643 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Purchases/AddToCart - 200 null application/json; charset=utf-8 432.8012ms
+2026-02-16 03:01:08.586 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:08.593 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:08.595 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - 204 null null 9.2ms
+2026-02-16 03:01:08.605 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:08.611 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:08.615 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:08.618 +02:00 [INF] Route matched with {action = "GetCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCart(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:08.632 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id] AS [PurchaseId], [g].[Name] AS [GiftName], [g].[Cost] AS [Price], [g].[Image]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:01:08.802 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:08.830 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit) in 208.0915ms
+2026-02-16 03:01:08.833 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:08.836 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - 200 null application/json; charset=utf-8 230.7861ms
+2026-02-16 03:01:18.642 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/AddToCart - null null
+2026-02-16 03:01:18.652 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:18.655 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/AddToCart - 204 null null 13.7022ms
+2026-02-16 03:01:18.680 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Purchases/AddToCart - application/json 37
+2026-02-16 03:01:18.689 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:18.691 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit)'
+2026-02-16 03:01:18.693 +02:00 [INF] Route matched with {action = "AddToCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddToCart(MechiraSinit.Dto.NewPurchaseDto) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:18.700 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[Id] = @__id_0
+2026-02-16 03:01:18.734 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__dto_GiftId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[Id] = @__dto_GiftId_0
+2026-02-16 03:01:18.775 +02:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?' (DbType = Boolean), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32), @p14='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [Purchases] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1),
+(@p10, @p11, @p12, @p13, @p14, 2)) AS i ([GiftId], [IsPaid], [PurchaseDate], [Quantity], [UserId], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([GiftId], [IsPaid], [PurchaseDate], [Quantity], [UserId])
+VALUES (i.[GiftId], i.[IsPaid], i.[PurchaseDate], i.[Quantity], i.[UserId])
+OUTPUT INSERTED.[Id], i._Position;
+2026-02-16 03:01:18.780 +02:00 [INF] משתמש 2 הוסיף לסל כרטיסים למתנה 26
+2026-02-16 03:01:18.782 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType7`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:18.784 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit) in 88.1637ms
+2026-02-16 03:01:18.786 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.AddToCart (MechiraSinit)'
+2026-02-16 03:01:18.787 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Purchases/AddToCart - 200 null application/json; charset=utf-8 107.3252ms
+2026-02-16 03:01:21.653 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:21.658 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:21.660 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - 204 null null 7.2211ms
+2026-02-16 03:01:21.668 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:21.674 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:21.676 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:21.679 +02:00 [INF] Route matched with {action = "GetCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCart(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:21.687 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id] AS [PurchaseId], [g].[Name] AS [GiftName], [g].[Cost] AS [Price], [g].[Image]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:01:21.899 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:21.957 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit) in 273.9427ms
+2026-02-16 03:01:21.964 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:21.978 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - 200 null application/json; charset=utf-8 310.2133ms
+2026-02-16 03:01:26.283 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Checkout/2 - null null
+2026-02-16 03:01:26.286 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:26.287 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Checkout/2 - 204 null null 3.7229ms
+2026-02-16 03:01:26.291 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Purchases/Checkout/2 - application/json 2
+2026-02-16 03:01:26.295 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:26.296 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.Checkout (MechiraSinit)'
+2026-02-16 03:01:26.300 +02:00 [INF] Route matched with {action = "Checkout", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Checkout(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:26.305 +02:00 [INF] --- התחלת תהליך תשלום (Checkout) למשתמש 2 ---
+2026-02-16 03:01:26.348 +02:00 [INF] Executed DbCommand (18ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[GiftId], [p].[IsPaid], [p].[PurchaseDate], [p].[Quantity], [p].[UserId], [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:01:26.678 +02:00 [INF] Executed DbCommand (16ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p4='?' (DbType = Boolean), @p7='?' (DbType = Int32), @p6='?' (DbType = Boolean), @p9='?' (DbType = Int32), @p8='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Purchases] SET [IsPaid] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+UPDATE [Purchases] SET [IsPaid] = @p2
+OUTPUT 1
+WHERE [Id] = @p3;
+UPDATE [Purchases] SET [IsPaid] = @p4
+OUTPUT 1
+WHERE [Id] = @p5;
+UPDATE [Purchases] SET [IsPaid] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+UPDATE [Purchases] SET [IsPaid] = @p8
+OUTPUT 1
+WHERE [Id] = @p9;
+2026-02-16 03:01:26.693 +02:00 [INF] ✅ תשלום בוצע בהצלחה למשתמש 2. מספר פריטים: 5
+2026-02-16 03:01:26.695 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2026-02-16 03:01:26.701 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.Checkout (MechiraSinit) in 398.6189ms
+2026-02-16 03:01:26.703 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.Checkout (MechiraSinit)'
+2026-02-16 03:01:26.704 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Purchases/Checkout/2 - 200 null application/json; charset=utf-8 413.0001ms
+2026-02-16 03:01:34.086 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - null null
+2026-02-16 03:01:34.091 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:34.093 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - 204 null null 7.1232ms
+2026-02-16 03:01:34.099 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Gift - null null
+2026-02-16 03:01:34.103 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:34.105 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:01:34.106 +02:00 [INF] Route matched with {action = "GetAllGifts", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGifts(System.String, System.String) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:01:34.124 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name], [g].[Description], [g].[Category], [g].[Image] AS [ImageUrl], [g].[Cost], [g].[DonorId], [g].[WinnerName]
+FROM [Gifts] AS [g]
+ORDER BY [g].[Id]
+2026-02-16 03:01:34.401 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.GiftDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:01:34.457 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit) in 348.2208ms
+2026-02-16 03:01:34.459 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:01:34.460 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Gift - 200 null application/json; charset=utf-8 361.7144ms
+2026-02-16 03:01:37.269 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/raffle/25 - null null
+2026-02-16 03:01:37.274 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:37.276 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/raffle/25 - 204 null null 7.1482ms
+2026-02-16 03:01:37.284 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Gift/raffle/25 - application/json 2
+2026-02-16 03:01:37.289 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:37.291 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit)'
+2026-02-16 03:01:37.296 +02:00 [INF] Route matched with {action = "PerformRaffle", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult PerformRaffle(Int32) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:01:37.303 +02:00 [INF] --- התחלת הגרלה למתנה 25 ---
+2026-02-16 03:01:37.383 +02:00 [INF] Executed DbCommand (12ms) [Parameters=[@__giftId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Category], [t].[Cost], [t].[Description], [t].[DonorId], [t].[Image], [t].[Name], [t].[TicketsSold], [t].[WinnerName], [t0].[Id], [t0].[GiftId], [t0].[IsPaid], [t0].[PurchaseDate], [t0].[Quantity], [t0].[UserId], [t0].[Id0], [t0].[Email], [t0].[Name], [t0].[Password], [t0].[Phone], [t0].[Role]
+FROM (
+    SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+    FROM [Gifts] AS [g]
+    WHERE [g].[Id] = @__giftId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p].[Id], [p].[GiftId], [p].[IsPaid], [p].[PurchaseDate], [p].[Quantity], [p].[UserId], [u].[Id] AS [Id0], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+    FROM [Purchases] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+) AS [t0] ON [t].[Id] = [t0].[GiftId]
+ORDER BY [t].[Id], [t0].[Id]
+2026-02-16 03:01:38.678 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Gifts] SET [WinnerName] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-02-16 03:01:38.681 +02:00 [INF] ההגרלה הסתיימה! הזוכה המאושר במתנה 25 הוא: מנהל
+2026-02-16 03:01:38.683 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:38.688 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit) in 1386.7803ms
+2026-02-16 03:01:38.689 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit)'
+2026-02-16 03:01:38.691 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Gift/raffle/25 - 200 null application/json; charset=utf-8 1406.9016ms
+2026-02-16 03:01:46.376 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/raffle/26 - null null
+2026-02-16 03:01:46.381 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:46.384 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/raffle/26 - 204 null null 8.3074ms
+2026-02-16 03:01:46.390 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Gift/raffle/26 - application/json 2
+2026-02-16 03:01:46.394 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:46.396 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit)'
+2026-02-16 03:01:46.399 +02:00 [INF] Route matched with {action = "PerformRaffle", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult PerformRaffle(Int32) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:01:46.404 +02:00 [INF] --- התחלת הגרלה למתנה 26 ---
+2026-02-16 03:01:46.410 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__giftId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Category], [t].[Cost], [t].[Description], [t].[DonorId], [t].[Image], [t].[Name], [t].[TicketsSold], [t].[WinnerName], [t0].[Id], [t0].[GiftId], [t0].[IsPaid], [t0].[PurchaseDate], [t0].[Quantity], [t0].[UserId], [t0].[Id0], [t0].[Email], [t0].[Name], [t0].[Password], [t0].[Phone], [t0].[Role]
+FROM (
+    SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+    FROM [Gifts] AS [g]
+    WHERE [g].[Id] = @__giftId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p].[Id], [p].[GiftId], [p].[IsPaid], [p].[PurchaseDate], [p].[Quantity], [p].[UserId], [u].[Id] AS [Id0], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+    FROM [Purchases] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+) AS [t0] ON [t].[Id] = [t0].[GiftId]
+ORDER BY [t].[Id], [t0].[Id]
+2026-02-16 03:01:46.521 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Gifts] SET [WinnerName] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-02-16 03:01:46.525 +02:00 [INF] ההגרלה הסתיימה! הזוכה המאושר במתנה 26 הוא: מנהל
+2026-02-16 03:01:46.527 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType5`3[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:46.530 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit) in 127.0849ms
+2026-02-16 03:01:46.531 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.PerformRaffle (MechiraSinit)'
+2026-02-16 03:01:46.533 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Gift/raffle/26 - 200 null application/json; charset=utf-8 142.9347ms
+2026-02-16 03:01:52.837 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - null null
+2026-02-16 03:01:52.837 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:52.843 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:52.849 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:52.850 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - 204 null null 13.2235ms
+2026-02-16 03:01:52.852 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - 204 null null 14.6702ms
+2026-02-16 03:01:52.859 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:01:52.865 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Gift - null null
+2026-02-16 03:01:52.869 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:52.874 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:01:52.877 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:52.878 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:01:52.879 +02:00 [INF] Route matched with {action = "GetCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCart(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:01:52.881 +02:00 [INF] Route matched with {action = "GetAllGifts", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGifts(System.String, System.String) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:01:52.891 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name], [g].[Description], [g].[Category], [g].[Image] AS [ImageUrl], [g].[Cost], [g].[DonorId], [g].[WinnerName]
+FROM [Gifts] AS [g]
+ORDER BY [g].[Id]
+2026-02-16 03:01:52.893 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id] AS [PurchaseId], [g].[Name] AS [GiftName], [g].[Cost] AS [Price], [g].[Image]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:01:52.900 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:01:52.902 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit) in 18.1465ms
+2026-02-16 03:01:52.906 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:01:52.908 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - 200 null application/json; charset=utf-8 49.5669ms
+2026-02-16 03:01:53.089 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.GiftDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:01:53.177 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit) in 289.9717ms
+2026-02-16 03:01:53.193 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:01:53.197 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Gift - 200 null application/json; charset=utf-8 331.9728ms
+2026-02-16 03:17:00.303 +02:00 [INF] User profile is available. Using 'C:\Users\משתמש\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-02-16 03:17:00.685 +02:00 [INF] Now listening on: http://localhost:5035
+2026-02-16 03:17:00.799 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-02-16 03:17:00.800 +02:00 [INF] Hosting environment: Development
+2026-02-16 03:17:00.802 +02:00 [INF] Content root path: D:\לימודים יד\ChineseAuctionProject\server\MechiraSinit
+2026-02-16 03:17:01.204 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/swagger/index.html - null null
+2026-02-16 03:17:01.453 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/swagger/index.html - 200 null text/html;charset=utf-8 256.8534ms
+2026-02-16 03:17:01.457 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/_vs/browserLink - null null
+2026-02-16 03:17:01.464 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/_framework/aspnetcore-browser-refresh.js - null null
+2026-02-16 03:17:01.472 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 8.2835ms
+2026-02-16 03:17:01.513 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.4939ms
+2026-02-16 03:17:01.557 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/swagger/v1/swagger.json - null null
+2026-02-16 03:17:01.589 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.1682ms
+2026-02-16 03:17:06.966 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - null null
+2026-02-16 03:17:06.978 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-02-16 03:17:06.981 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:06.985 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Users/login - 204 null null 19.0888ms
+2026-02-16 03:17:06.990 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5035/api/Users/login - application/json 69
+2026-02-16 03:17:06.996 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:07.177 +02:00 [INF] Executing endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 03:17:07.223 +02:00 [INF] Route matched with {action = "Login", controller = "Users"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login(MechiraSinit.Dto.UserLoginDto) on controller UsersController (MechiraSinit).
+2026-02-16 03:17:07.464 +02:00 [INF] ניסיון התחברות: as@gmail.com
+2026-02-16 03:17:09.348 +02:00 [INF] Executed DbCommand (61ms) [Parameters=[@__loginDto_Email_0='?' (Size = 4000), @__loginDto_Password_1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Email], [u].[Name], [u].[Password], [u].[Phone], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginDto_Email_0 AND [u].[Password] = @__loginDto_Password_1
+2026-02-16 03:17:09.462 +02:00 [INF] התחברות מוצלחת: as@gmail.com, תפקיד: "Manager"
+2026-02-16 03:17:09.488 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType12`4[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[MechiraSinit.Models.UserRole, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:17:09.521 +02:00 [INF] Executed action UsersController.Login (MechiraSinit) in 2289.7015ms
+2026-02-16 03:17:09.524 +02:00 [INF] Executed endpoint 'UsersController.Login (MechiraSinit)'
+2026-02-16 03:17:09.539 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5035/api/Users/login - 200 null application/json; charset=utf-8 2548.4087ms
+2026-02-16 03:17:14.353 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:17:14.359 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:14.361 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - 204 null null 8.384ms
+2026-02-16 03:17:14.367 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:17:14.374 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:14.394 +02:00 [INF] Executing endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:17:14.405 +02:00 [INF] Route matched with {action = "GetAll", controller = "Donors"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String) on controller DonorsController (MechiraSinit).
+2026-02-16 03:17:14.484 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[Name], [d].[Email], [d].[Phone]
+FROM [Donors] AS [d]
+2026-02-16 03:17:14.489 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.DonorDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:17:14.497 +02:00 [INF] Executed action DonorsController.GetAll (MechiraSinit) in 88.3354ms
+2026-02-16 03:17:14.499 +02:00 [INF] Executed endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:17:14.501 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Donors?search= - 200 null application/json; charset=utf-8 133.5887ms
+2026-02-16 03:17:28.255 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Donors/2 - null null
+2026-02-16 03:17:28.259 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:28.261 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Donors/2 - 204 null null 6.6944ms
+2026-02-16 03:17:28.269 +02:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5035/api/Donors/2 - application/json 66
+2026-02-16 03:17:28.275 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:28.285 +02:00 [INF] Executing endpoint 'DonorsController.Update (MechiraSinit)'
+2026-02-16 03:17:28.290 +02:00 [INF] Route matched with {action = "Update", controller = "Donors"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Update(Int32, MechiraSinit.Dto.DonorDto) on controller DonorsController (MechiraSinit).
+2026-02-16 03:17:28.308 +02:00 [INF] מעדכן פרטי תורם: 2
+2026-02-16 03:17:28.409 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__donorDto_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[Id], [d].[Email], [d].[Name], [d].[Phone]
+FROM [Donors] AS [d]
+WHERE [d].[Id] = @__donorDto_Id_0
+2026-02-16 03:17:28.541 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Donors] SET [Phone] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2026-02-16 03:17:28.557 +02:00 [INF] תורם 2 עודכן בהצלחה
+2026-02-16 03:17:28.559 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:17:28.564 +02:00 [INF] Executed action DonorsController.Update (MechiraSinit) in 270.7437ms
+2026-02-16 03:17:28.566 +02:00 [INF] Executed endpoint 'DonorsController.Update (MechiraSinit)'
+2026-02-16 03:17:28.568 +02:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5035/api/Donors/2 - 200 null application/json; charset=utf-8 298.4124ms
+2026-02-16 03:17:32.680 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - null null
+2026-02-16 03:17:32.688 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:32.691 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - 204 null null 10.6782ms
+2026-02-16 03:17:32.697 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Gift - null null
+2026-02-16 03:17:32.703 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:32.706 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:17:32.712 +02:00 [INF] Route matched with {action = "GetAllGifts", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGifts(System.String, System.String) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:17:32.769 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name], [g].[Description], [g].[Category], [g].[Image] AS [ImageUrl], [g].[Cost], [g].[DonorId], [g].[WinnerName]
+FROM [Gifts] AS [g]
+ORDER BY [g].[Id]
+2026-02-16 03:17:33.393 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.GiftDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:17:33.467 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit) in 751.3246ms
+2026-02-16 03:17:33.472 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:17:33.478 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Gift - 200 null application/json; charset=utf-8 780.614ms
+2026-02-16 03:17:39.389 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:17:39.395 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:39.397 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Donors?search= - 204 null null 8.4327ms
+2026-02-16 03:17:39.406 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Donors?search= - null null
+2026-02-16 03:17:39.411 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:17:39.417 +02:00 [INF] Executing endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:17:39.421 +02:00 [INF] Route matched with {action = "GetAll", controller = "Donors"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAll(System.String) on controller DonorsController (MechiraSinit).
+2026-02-16 03:17:39.442 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [d].[Id], [d].[Name], [d].[Email], [d].[Phone]
+FROM [Donors] AS [d]
+2026-02-16 03:17:39.448 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.DonorDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:17:39.451 +02:00 [INF] Executed action DonorsController.GetAll (MechiraSinit) in 25.3934ms
+2026-02-16 03:17:39.453 +02:00 [INF] Executed endpoint 'DonorsController.GetAll (MechiraSinit)'
+2026-02-16 03:17:39.455 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Donors?search= - 200 null application/json; charset=utf-8 49.021ms
+2026-02-16 03:18:24.765 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/27 - null null
+2026-02-16 03:18:24.771 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:24.773 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift/27 - 204 null null 7.7189ms
+2026-02-16 03:18:24.781 +02:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5035/api/Gift/27 - application/json 747047
+2026-02-16 03:18:24.787 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:24.790 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.UpdateGift (MechiraSinit)'
+2026-02-16 03:18:24.795 +02:00 [INF] Route matched with {action = "UpdateGift", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UpdateGift(Int32, MechiraSinit.Dto.GiftDto) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:18:24.814 +02:00 [INF] מעדכן מתנה 27
+2026-02-16 03:18:24.884 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Category], [g].[Cost], [g].[Description], [g].[DonorId], [g].[Image], [g].[Name], [g].[TicketsSold], [g].[WinnerName]
+FROM [Gifts] AS [g]
+WHERE [g].[Id] = @__p_0
+2026-02-16 03:18:24.972 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = Int32), @p1='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Gifts] SET [Cost] = @p0, [Description] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-02-16 03:18:24.976 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:18:24.978 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.UpdateGift (MechiraSinit) in 180.7365ms
+2026-02-16 03:18:24.980 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.UpdateGift (MechiraSinit)'
+2026-02-16 03:18:24.982 +02:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5035/api/Gift/27 - 200 null application/json; charset=utf-8 201.6968ms
+2026-02-16 03:18:48.069 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - null null
+2026-02-16 03:18:48.079 +02:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:18:48.088 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:48.093 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:48.094 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Gift - 204 null null 24.857ms
+2026-02-16 03:18:48.096 +02:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:5035/api/Purchases/Cart/2 - 204 null null 18.284ms
+2026-02-16 03:18:48.112 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Gift - null null
+2026-02-16 03:18:48.116 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - null null
+2026-02-16 03:18:48.119 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:48.124 +02:00 [INF] CORS policy execution successful.
+2026-02-16 03:18:48.124 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:18:48.127 +02:00 [INF] Route matched with {action = "GetAllGifts", controller = "Gift"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGifts(System.String, System.String) on controller MechiraSinit.Controllers.GiftController (MechiraSinit).
+2026-02-16 03:18:48.128 +02:00 [INF] Executing endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:18:48.135 +02:00 [INF] Route matched with {action = "GetCart", controller = "Purchases"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetCart(Int32) on controller MechiraSinit.Controllers.PurchasesController (MechiraSinit).
+2026-02-16 03:18:48.143 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [g].[Id], [g].[Name], [g].[Description], [g].[Category], [g].[Image] AS [ImageUrl], [g].[Cost], [g].[DonorId], [g].[WinnerName]
+FROM [Gifts] AS [g]
+ORDER BY [g].[Id]
+2026-02-16 03:18:48.252 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id] AS [PurchaseId], [g].[Name] AS [GiftName], [g].[Cost] AS [Price], [g].[Image]
+FROM [Purchases] AS [p]
+INNER JOIN [Gifts] AS [g] ON [p].[GiftId] = [g].[Id]
+WHERE [p].[UserId] = @__userId_0 AND [p].[IsPaid] = CAST(0 AS bit)
+2026-02-16 03:18:48.255 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-02-16 03:18:48.256 +02:00 [INF] Executed action MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit) in 118.6678ms
+2026-02-16 03:18:48.258 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.PurchasesController.GetCart (MechiraSinit)'
+2026-02-16 03:18:48.260 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Purchases/Cart/2 - 200 null application/json; charset=utf-8 144.7123ms
+2026-02-16 03:18:48.418 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[MechiraSinit.Dto.GiftDto, MechiraSinit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-02-16 03:18:48.497 +02:00 [INF] Executed action MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit) in 366.0248ms
+2026-02-16 03:18:48.501 +02:00 [INF] Executed endpoint 'MechiraSinit.Controllers.GiftController.GetAllGifts (MechiraSinit)'
+2026-02-16 03:18:48.505 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5035/api/Gift - 200 null application/json; charset=utf-8 392.7823ms

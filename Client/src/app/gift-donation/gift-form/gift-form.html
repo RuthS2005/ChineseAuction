@@ -1,51 +1,60 @@
 <div class="gift-form-container">
 
-  <h2>הוספת מתנה חדשה</h2>
+  <h2>{{ giftForm.get('id')?.value ? 'עריכת מתנה' : 'הוספת מתנה חדשה' }}</h2>
 
-  <form (ngSubmit)="onSave()">
+  <form [formGroup]="giftForm" (ngSubmit)="onSave()">
 
     <div class="form-group">
       <label>שם המתנה:</label>
-      <input type="text" name="name" [(ngModel)]="gift.name" required placeholder="שם המתנה">
+      <input type="text" formControlName="name" placeholder="שם המתנה">
+      <small *ngIf="giftForm.get('name')?.invalid && giftForm.get('name')?.touched" style="color:red">
+        חובה להזין שם למתנה
+      </small>
     </div>
 
     <div class="form-group">
       <label>תיאור:</label>
-      <textarea name="description" [(ngModel)]="gift.description" placeholder="תיאור קצר של המתנה"></textarea>
+      <textarea formControlName="description" placeholder="תיאור קצר של המתנה"></textarea>
+      <small *ngIf="giftForm.get('description')?.invalid && giftForm.get('description')?.touched" style="color:red">
+        תיאור הוא שדה חובה
+      </small>
     </div>
 
     <div class="form-group">
       <label>קטגוריה:</label>
-      <select name="category" [(ngModel)]="gift.category" required>
-        <option value="" disabled selected>בחר קטגוריה...</option>
+      <select formControlName="category">
+        <option value="" disabled>בחר קטגוריה...</option>
         <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label>תורם:</label>
-      <select name="donorId" [(ngModel)]="gift.donorId" required>
-        <option [ngValue]="null" disabled selected>בחר תורם...</option>
+      <select formControlName="donorId">
+        <option [ngValue]="null" disabled>בחר תורם...</option>
         <option *ngFor="let d of donors" [ngValue]="d.id">{{ d.name }}</option>
       </select>
     </div>
 
     <div class="form-group">
       <label>מחיר כרטיס:</label>
-      <input type="number" name="value" [(ngModel)]="gift.value" required placeholder="מחיר">
+      <input type="number" formControlName="cost" placeholder="מחיר">
+      <small *ngIf="giftForm.get('cost')?.invalid && giftForm.get('cost')?.touched" style="color:red">
+        מחיר חייב להיות לפחות 1
+      </small>
     </div>
 
     <div class="form-group">
       <label>תמונה:</label>
       <input type="file" (change)="onImageSelected($event)" accept="image/*">
 
-      <div *ngIf="gift.imageUrl" class="preview" style="margin-top: 10px;">
+      <div *ngIf="giftForm.get('imageUrl')?.value" class="preview" style="margin-top: 10px;">
         <p>תצוגה מקדימה:</p>
-        <img [src]="gift.imageUrl" alt="Preview" width="150" style="border: 1px solid #ccc; padding: 3px;">
+        <img [src]="giftForm.get('imageUrl')?.value" alt="Preview" width="150" style="border: 1px solid #ccc; padding: 3px;">
       </div>
     </div>
 
-    <button type="submit" [disabled]="!gift.name || !gift.category || !gift.value || !gift.donorId">
+    <button type="submit" [disabled]="giftForm.invalid">
       שמור מתנה
     </button>
   </form>

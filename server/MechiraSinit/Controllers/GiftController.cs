@@ -2,8 +2,6 @@
 using MechiraSinit.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Security.Claims;
 
 namespace MechiraSinit.Controllers
 {
@@ -11,69 +9,81 @@ namespace MechiraSinit.Controllers
     [ApiController]
     public class GiftController : ControllerBase
     {
-        // 1. משתנה שיחזיק את הסרוויס
         private readonly IGiftService _giftService;
+        private readonly ILogger<GiftController> _logger; // 1. משתנה לוגר
 
-        // 2. בנאי (Constructor) - כאן מתבצעת ההזרקה (DI)
-        public GiftController(IGiftService giftService)
+        // 2. הזרקת הלוגר בבנאי
+        public GiftController(IGiftService giftService, ILogger<GiftController> logger)
         {
             _giftService = giftService;
+            _logger = logger;
         }
 
-  
-            [HttpGet]
-            // מקבלים פרמטרים מה-URL (למשל: api/Gift?search=מכונה&sort=expensive)
-            public IActionResult GetAllGifts([FromQuery] string? search, [FromQuery] string? sort)
-            {
-                var gifts = _giftService.GetAllGifts(search, sort);
-                return Ok(gifts);
-            }
-            [HttpPost]
+        [HttpGet]
+        public IActionResult GetAllGifts([FromQuery] string? search, [FromQuery] string? sort)
+        {
+            // לוגים ב-Get הם אופציונליים, שמתי בהערה כדי לא להפציץ את הקונסול
+            // _logger.LogInformation("Fetching all gifts. Search: {Search}, Sort: {Sort}", search, sort);
+            return Ok(_giftService.GetAllGifts(search, sort));
+        }
+
+        [HttpPost]
         [Authorize(Roles = "Manager")]
         public IActionResult CreateGift([FromBody] GiftDto giftDto)
         {
-            // פניה לסרוויס כדי לשמור
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning("ניסיון ליצור מתנה עם נתונים לא תקינים: {@ModelErrors}", ModelState);
+                return BadRequest(ModelState);
+            }
+
+            _logger.LogInformation("מנהל יוצר מתנה חדשה: {GiftName}", giftDto.Name);
+
             var newId = _giftService.AddGift(giftDto);
 
-            // מחזירים ללקוח את ה-ID החדש שנוצר
-            return Ok(newId);
+            _logger.LogInformation("מתנה נוצרה בהצלחה. ID: {GiftId}", newId);
+            return CreatedAtAction(nameof(GetAllGifts), new { id = newId }, new { Id = newId });
         }
 
-        // Update endpoint
         [HttpPut("{id}")]
         [Authorize(Roles = "Manager")]
         public IActionResult UpdateGift(int id, [FromBody] GiftDto giftDto)
         {
-            try
-            {
-                var updated = _giftService.UpdateGift(id, giftDto);
-                if (!updated)
-                    return NotFound(new { Message = "Gift not found" });
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-                return Ok(new { Message = "Gift updated successfully" });
-            }
-            catch (Exception ex)
+            _logger.LogInformation("מעדכן מתנה {GiftId}", id);
+
+            var updated = _giftService.UpdateGift(id, giftDto);
+
+            if (!updated)
             {
-                return BadRequest(new { Error = ex.Message });
+                _logger.LogWarning("ניסיון לעדכן מתנה שלא קיימת: {GiftId}", id);
+                return NotFound(new { Message = "Gift not found" });
             }
+
+            return Ok(new { Message = "Gift updated successfully" });
         }
+
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Manager")] // חובה! רק מנהל מוחק
+        [Authorize(Roles = "Manager")]
         public IActionResult DeleteGift(int id)
         {
+            _logger.LogInformation("מנהל מנסה למחוק מתנה: {GiftId}", id);
             try
             {
-                var success = _giftService.DeleteGift(id);
-                if (!success)
+                if (!_giftService.DeleteGift(id))
                 {
-                    return NotFound(new { Message = "המתנה לא נמצאה" });
+                    _logger.LogWarning("מחיקה נכשלה - מתנה {GiftId} לא נמצאה", id);
+                    return NotFound();
                 }
-                return Ok(new { Message = "המתנה נמחקה בהצלחה" });
+
+                _logger.LogInformation("מתנה {GiftId} נמחקה בהצלחה", id);
+                return Ok(new { Message = "נמחק בהצלחה" });
             }
             catch (Exception ex)
             {
-                // זה יקרה אם תנסי למחוק מתנה שכבר קנו לה כרטיסים (בגלל קשרי גומלין ב-SQL)
-                return BadRequest(new { Message = "לא ניתן למחוק מתנה שנרכשו ממנה כרטיסים", Error = ex.Message });
+                _logger.LogError(ex, "שגיאה במחיקת מתנה {GiftId} - כנראה יש רוכשים", id);
+                return BadRequest(new { Message = "לא ניתן למחוק מתנה עם רוכשים", Error = ex.Message });
             }
         }
 
@@ -81,21 +91,29 @@ namespace MechiraSinit.Controllers
         [Authorize(Roles = "Manager")]
         public IActionResult PerformRaffle(int id)
         {
+            _logger.LogInformation("--- התחלת הגרלה למתנה {GiftId} ---", id);
             try
             {
                 var winner = _giftService.RunRaffle(id);
 
-                return Ok(new
-                {
-                    Message = "יש לנו זוכה!",
-                    WinnerName = winner.Name,
-                    winner.Email
-                });
+                _logger.LogInformation("ההגרלה הסתיימה! הזוכה המאושר במתנה {GiftId} הוא: {WinnerName}", id, winner.Name);
+
+                return Ok(new { Message = "יש לנו זוכה!", WinnerName = winner.Name, WinnerEmail = winner.Email });
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "ההגרלה נכשלה עבור מתנה {GiftId}", id);
                 return BadRequest(new { Error = ex.Message });
             }
+        }
+
+        [HttpGet("winners-report")]
+        [Authorize(Roles = "Manager")]
+        public IActionResult GetWinnersReport()
+        {
+            _logger.LogInformation("מפיק דוח זוכים...");
+            var report = _giftService.GetWinnersReport();
+            return Ok(report);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace MechiraSinit.Models
         public int Cost {  get; set; }
         [Required]
         public int DonorId {  get; set; }
-        public int ? WinnerUserId { get; set; } // המפתח הזר למשתמש הזוכה (יכול להיות null)
+        public string? WinnerName { get; set; }
 
         public Donor? Donor { get; set; }
         public List<Purchase> Purchases { get; set; }= new List<Purchase>();

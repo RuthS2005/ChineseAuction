@@ -10,6 +10,7 @@ namespace MechiraSinit.Services
         User? RunRaffle(int giftId);
         bool UpdateGift(int id, GiftDto giftDto);
         bool DeleteGift(int id);
+        Gift GetGiftById(int id);
         List<ReportWinnerDto> GetWinnersReport();
     }
 }
